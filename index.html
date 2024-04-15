@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Albion Online Market Prices</title>
+  <link rel="icon" href="logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script src="MenuEventListener.js" defer></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body>
+  <div class="Search-Sort">
+    <div class="search-wrapper">
+      <input type="search" id="search"  placeholder="Search Items" data-search>
+    </div>
+    <ul class="SortMenu">
+      <li><a href="" class="SortMenuTextAZ">A à Z ▼</a>
+        <ul id="Sousmenu" class="SousMenuScrAZ">
+          <li><a href="" class="A-Z">A à Z</a></li>
+          <li><a href="" class="Z-A">Z à A</a></li>
+        </ul>
+      </li>
+      <li><a href="" class="SortMenuTextT">All tiers ▼</a>
+        <ul id="Sousmenu" class="SousMenuScrT">
+          <li><a href="" class="T1">T1</a></li>
+          <li><a href="" class="T2">T2</a></li>
+          <li><a href="" class="T3">T3</a></li>
+          <li><a href="" class="T4">T4</a></li>
+          <li><a href="" class="T5">T5</a></li>
+          <li><a href="" class="T6">T6</a></li>
+          <li><a href="" class="T7">T7</a></li>
+          <li><a href="" class="T8">T8</a></li>
+          <li><a href="" class="All">All tiers</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="responsive-button">
+      
+    </button>
+  </div>
+  
+  <div class="item-cards" data-item-cards-container></div>
+  <div>
+    <button class="btn-afficher-plus">afficher plus</button>
+  </div>
+  <template data-item-template>
+    <div class="card">
+      <img class="image" data-image src="" alt="">
+      <div class="header" data-header></div>
+    </div>
+  </template>
+</body>
+
+</html>

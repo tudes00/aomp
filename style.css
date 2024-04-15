@@ -1,0 +1,189 @@
+:root {
+  --body-color: #0b1419;
+  --textMenuHoverSubmenus-color: #7a7a7a;
+  --foreground-color: #383842;
+  --menuHover-color: #23333c;
+  --submenus-color: #f3f3f3;
+}
+
+.Search-Sort {
+  display: flex;
+  column-gap: .5rem;
+}
+
+#search {
+  background-image: url("search.png");
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  padding-bottom: 7.5px;
+  padding-top: 7.5px;
+}
+
+#search::placeholder {
+  color: white;
+  font-weight: bold;
+  font-size: large;
+}
+
+input {
+  background-color: var(--foreground-color);
+  font-size: 1rem;
+  flex-grow: 1;
+  color: white;
+  border-radius: 5px;
+  border: .2px solid #151c25;
+  margin-left: 3px;
+}
+
+.item-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  gap: .40rem;
+  margin-top: 2px;
+  float: none;
+  clear: both;
+}
+
+.card {
+  border-radius: 5px;
+  background-color: var(--foreground-color);
+  padding: .4rem;
+  font-size: large;
+}
+
+.header {
+  word-wrap: break-word;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.image {
+  float: left;
+  max-width: 50%;
+}
+
+
+.hide {
+  display: none;
+}
+
+body {
+  background-color: var(--body-color);
+}
+
+.SortMenu ul, .SortMenu li, .SortMenu{
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.SortMenu{
+  z-index: 2;
+}
+
+
+.SortMenu ul {
+  margin-top: 8px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-52%);
+  width: max-content;
+  list-style: none;
+}
+
+.SortMenu li {
+  padding-right: .5rem;
+  padding-bottom: 10px;
+  float: left;
+  position: relative;
+  width: auto;
+}
+
+.SortMenu a{
+  background: var(--foreground-color);
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: all .55s ease;
+  color: white;
+  padding: 10px 20px;
+  font-size: 12px;
+  line-height: 1.2;
+  height: 15.8px;
+}
+
+.SortMenu li:hover .SousMenuScrAZ a{
+  color: var(--textMenuHoverSubmenus-color);
+  background: var(--menuHover-color);
+}
+
+.SortMenu li:hover .SousMenuScrT a{
+  color: var(--textMenuHoverSubmenus-color);
+  background: var(--menuHover-color);
+}
+
+
+.SortMenuTextAZ, .SortMenuTextT{
+  line-height: .6;
+  border-radius: 5px;
+}
+
+
+#Sousmenu {
+  z-index: 1;
+  transition: all .2s ease;
+  opacity: 0;
+  position: absolute;
+  top: 35px;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 5px;
+}
+
+
+li:hover #Sousmenu {
+  top: auto;
+  opacity: 1;
+  visibility: visible;
+  max-height: 800px;
+  transition: all .4s ease;
+}
+
+#Sousmenu li{
+  padding-bottom: 0px;
+  float: none;
+  width: 100%;
+  line-height: 0.2;
+}
+
+#Sousmenu a:hover{
+  transition: all .2s ease;
+  color: black;
+}
+
+#Sousmenu a{
+  background-color:  var(--submenus-color);
+}
+
+.btn-afficher-plus {
+  margin-top: .4rem;
+}
+
+.responsive-button {
+  display: none;
+}
+
+@media only screen and (max-width: 474px) {
+  .responsive-button {
+    display: block;
+  }
+}

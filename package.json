@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@vercel/analytics": "^1.2.2",
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "express": "^4.19.1",
+    "node": "^18.20.0"
+  }
+}

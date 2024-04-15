@@ -1,3 +1,6 @@
+"helo"
+
+
 const ItemCardTemplate = document.querySelector("[data-item-template]");
 const ItemCardContainer = document.querySelector("[data-item-cards-container]");
 const SearchInput = document.querySelector("[data-search]");

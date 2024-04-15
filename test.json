@@ -1,0 +1,198 @@
+Array(96) [ {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, … ]
+​
+0: Object { LocalizationNameVariable: "@ITEMS_T1_SEAWEED", LocalizationDescriptionVariable: "@ITEMS_T1_SEAWEED_DESC", Index: "175", … }
+​
+1: Object { LocalizationNameVariable: "@ITEMS_T1_FISHINGBAIT", LocalizationDescriptionVariable: "@ITEMS_FISHINGBAIT_DESC", Index: "643", … }
+​
+2: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_VEGETATION_TREE_DECO_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2915", … }
+​
+3: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_VEGETATION_TREE_DECO_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2916", … }
+​
+4: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_VEGETATION_TREE_DOMESTIC_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2919", … }
+​
+5: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_VEGETATION_TREE_DECO_C", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2917", … }
+​
+6: Object { LocalizationNameVariable: "@ITEMS_T1_OFF_SHIELD", LocalizationDescriptionVariable: "@ITEMS_T1_OFF_SHIELD_DESC", Index: "1847", … }
+​
+7: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_CANDELABRA_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2930", … }
+​
+8: Object { LocalizationNameVariable: "@ITEMS_T1_HEAD_LEATHER_SET1", LocalizationDescriptionVariable: "@ITEMS_T1_HEAD_LEATHER_SET1_DESC", Index: "3731", … }
+​
+9: Object { LocalizationNameVariable: "@ITEMS_T1_CARROT", LocalizationDescriptionVariable: "@ITEMS_T1_CARROT_DESC", Index: "118", … }
+​
+10: Object { LocalizationNameVariable: "@ITEMS_T1_SHOES_LEATHER_SET1", LocalizationDescriptionVariable: "@ITEMS_T1_SHOES_LEATHER_SET1_DESC", Index: "3787", … }
+​
+11: Object { LocalizationNameVariable: "@ITEMS_T1_FACTION_MOUNTAIN_TOKEN_1", LocalizationDescriptionVariable: "@ITEMS_T1_FACTION_MOUNTAIN_TOKEN_1_DESC", Index: "9203", … }
+​
+12: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_FURNITUREITEM_EASTER_CHEST", LocalizationDescriptionVariable: "@ITEMS_UNIQUE_FURNITUREITEM_EASTER_CHEST_DESC", Index: "2886", … }
+​
+13: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_FIREBOWL_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2896", … }
+​
+14: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_FIREBOWL_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2897", … }
+​
+15: Object { LocalizationNameVariable: "@ITEMS_T1_2H_TOOL_KNIFE", LocalizationDescriptionVariable: "@ITEMS_T1_2H_TOOL_KNIFE_DESC", Index: "2686", … }
+​
+16: Object { LocalizationNameVariable: "@ITEMS_T1_TRASH", LocalizationDescriptionVariable: "@ITEMS_T1_TRASH_DESC", Index: "1839", … }
+​
+17: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_GATE_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2923", … }
+​
+18: Object { LocalizationNameVariable: "@ITEMS_T1_ALCHEMY_EXTRACT_LEVEL1", LocalizationDescriptionVariable: "@ITEMS_T1_ALCHEMY_EXTRACT_DESC", Index: "1801", … }
+​
+19: Object { LocalizationNameVariable: "@ITEMS_T1_ALCHEMY_EXTRACT_LEVEL3", LocalizationDescriptionVariable: "@ITEMS_T1_ALCHEMY_EXTRACT_DESC", Index: "1803", … }
+​
+20: Object { LocalizationNameVariable: "@ITEMS_T1_ALCHEMY_EXTRACT_LEVEL2", LocalizationDescriptionVariable: "@ITEMS_T1_ALCHEMY_EXTRACT_DESC", Index: "1802", … }
+​
+21: Object { LocalizationNameVariable: "@ITEMS_T1_2H_TOOL_SICKLE", LocalizationDescriptionVariable: "@ITEMS_T1_2H_TOOL_SICKLE_DESC", Index: "2673", … }
+​
+22: Object { LocalizationNameVariable: "@ITEMS_T1_FACTION_STEPPE_TOKEN_1", LocalizationDescriptionVariable: "@ITEMS_T1_FACTION_STEPPE_TOKEN_1_DESC", Index: "9202", … }
+​
+23: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_FISH_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2926", … }
+​
+24: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_ROTTEN_CANDY", LocalizationDescriptionVariable: "@ITEMS_UNIQUE_ROTTEN_CANDY_DESC", Index: "10009", … }
+​
+25: Object { LocalizationNameVariable: "@ITEMS_T1_FISH_FRESHWATER_ALL_COMMON", LocalizationDescriptionVariable: "@ITEMS_FISH_FRESHWATER_ALL_COMMON_DESC", Index: "138", … }
+​
+26: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_FURNITUREITEM_VANITY_ARENA_BANNER_06", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2889", … }
+​
+27: Object { LocalizationNameVariable: "@ITEMS_T1_FARM_CARROT_SEED", LocalizationDescriptionVariable: "@ITEMS_T1_FARM_CARROT_SEED_DESC", Index: "8", … }
+​
+28: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_FURNITUREITEM_VANITY_ARENA_BANNER_05", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2888", … }
+​
+29: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_ROTTEN_CAKE", LocalizationDescriptionVariable: "@ITEMS_UNIQUE_ROTTEN_CAKE_DESC", Index: "10002", … }
+​
+30: Object { LocalizationNameVariable: "@ITEMS_T1_2H_TOOL_AXE", LocalizationDescriptionVariable: "@ITEMS_T1_2H_TOOL_AXE_DESC", Index: "2660", … }
+​
+31: Object { LocalizationNameVariable: "@ITEMS_T1_FISH_SALTWATER_ALL_COMMON", LocalizationDescriptionVariable: "@ITEMS_FISH_SALTWATER_ALL_COMMON_DESC", Index: "146", … }
+​
+32: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_LANTERN_CORNER_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2929", … }
+​
+33: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_LANTERN_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2928", … }
+​
+34: Object { LocalizationNameVariable: "@ITEMS_T1_WORM", LocalizationDescriptionVariable: "@ITEMS_T1_WORM_DESC", Index: "642", … }
+​
+35: Object { LocalizationNameVariable: "@ITEMS_T1_2H_TOOL_HAMMER", LocalizationDescriptionVariable: "@ITEMS_T1_2H_TOOL_HAMMER_DESC", Index: "2647", … }
+​
+36: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_FARM_DECO_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2893", … }
+​
+37: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_FARM_DECO_C", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2894", … }
+​
+38: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_FURNITUREITEM_VANITY_ARENA_BANNER_04", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2887", … }
+​
+39: Object { LocalizationNameVariable: "@ITEMS_T1_FISHCHOPS", LocalizationDescriptionVariable: "@ITEMS_T1_FISHCHOPS_DESC", Index: "177", … }
+​
+40: Object { LocalizationNameVariable: "@ITEMS_T1_FACTION_CAERLEON_TOKEN_1", LocalizationDescriptionVariable: "@ITEMS_T1_FACTION_CAERLEON_TOKEN_1_DESC", Index: "9205", … }
+​
+41: Object { LocalizationNameVariable: "@ITEMS_T1_HIDE", LocalizationDescriptionVariable: "@ITEMS_HIDE_DESC", Index: "944", … }
+​
+42: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_VEGETATION_TREE_DOMESTIC_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2918", … }
+​
+43: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_MAGIC_EMBLEM_GROUND_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2898", … }
+​
+44: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_NATURE_EMBLEM_GROUND_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2900", … }
+​
+45: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_VALOR_EMBLEM_GROUND_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2912", … }
+​
+46: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_SWORD_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2908", … }
+​
+47: Object { LocalizationNameVariable: "@ITEMS_T1_ROCK", LocalizationDescriptionVariable: "@ITEMS_ROCK_LEVEL0_DESC", Index: "894", … }
+​
+48: Object { LocalizationNameVariable: "@ITEMS_T1_2H_TOOL_PICK", LocalizationDescriptionVariable: "@ITEMS_T1_2H_TOOL_PICK_DESC", Index: "2634", … }
+​
+49: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_GRILLEDFISH", LocalizationDescriptionVariable: "@ITEMS_MEAL_GRILLEDFISH_FISH_DESC", Index: "646", … }
+​
+50: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_BUNTING_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2920", … }
+​
+51: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_GATE_BIG_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2924", … }
+​
+52: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_WELL_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2914", … }
+​
+53: Object { LocalizationNameVariable: "@ITEMS_T1_ALCHEMY_COMMON", LocalizationDescriptionVariable: "@ITEMS_T1_ALCHEMY_COMMON_DESC", Index: "1800", … }
+​
+54: Object { LocalizationNameVariable: "@ITEMS_T1_FACTION_HIGHLAND_TOKEN_1", LocalizationDescriptionVariable: "@ITEMS_T1_FACTION_HIGHLAND_TOKEN_1_DESC", Index: "9201", … }
+​
+55: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SEAWEEDSALAD", LocalizationDescriptionVariable: "@ITEMS_MEAL_SEAWEEDSALAD_DESC", Index: "647", … }
+​
+56: Object { LocalizationNameVariable: "@ITEMS_T1_FISHSAUCE_LEVEL1", LocalizationDescriptionVariable: "@ITEMS_FISHSAUCE_DESC", Index: "178", … }
+​
+57: Object { LocalizationNameVariable: "@ITEMS_T1_FISHSAUCE_LEVEL2", LocalizationDescriptionVariable: "@ITEMS_FISHSAUCE_DESC", Index: "179", … }
+​
+58: Object { LocalizationNameVariable: "@ITEMS_T1_FISHSAUCE_LEVEL3", LocalizationDescriptionVariable: "@ITEMS_FISHSAUCE_DESC", Index: "180", … }
+​
+59: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_DESC", Index: "648", … }
+​
+60: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_DESC", Index: "649", … }
+​
+61: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_DESC", Index: "650", … }
+​
+62: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_DESC", Index: "651", … }
+​
+63: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP_FISH", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_FISH_DESC", Index: "660", … }
+​
+64: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP_FISH", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_FISH_DESC", Index: "661", … }
+​
+65: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP_FISH", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_FISH_DESC", Index: "662", … }
+​
+66: Object { LocalizationNameVariable: "@ITEMS_T1_MEAL_SOUP_FISH", LocalizationDescriptionVariable: "@ITEMS_MEAL_SOUP_FISH_DESC", Index: "663", … }
+​
+67: Object { LocalizationNameVariable: "@ITEMS_T1_FACTION_FOREST_TOKEN_1", LocalizationDescriptionVariable: "@ITEMS_T1_FACTION_FOREST_TOKEN_1_DESC", Index: "9200", … }
+​
+68: Object { LocalizationNameVariable: "@ITEMS_T1_WOOD", LocalizationDescriptionVariable: "@ITEMS_WOOD_DESC", Index: "866", … }
+​
+69: Object { LocalizationNameVariable: "@ITEMS_T1_FACTION_SWAMP_TOKEN_1", LocalizationDescriptionVariable: "@ITEMS_T1_FACTION_SWAMP_TOKEN_1_DESC", Index: "9204", … }
+​
+70: Object { LocalizationNameVariable: "@ITEMS_T1_MAIN_SWORD", LocalizationDescriptionVariable: "@ITEMS_T1_MAIN_SWORD_DESC", Index: "7989", … }
+​
+71: Object { LocalizationNameVariable: "@ITEMS_QUESTITEM_TOKEN_ROYAL_HORSE", LocalizationDescriptionVariable: "@ITEMS_QUESTITEM_TOKEN_ROYAL_HORSE_DESC", Index: "427", … }
+​
+72: Object { LocalizationNameVariable: "@ITEMS_T1_SILVERBAG_NONTRADABLE", LocalizationDescriptionVariable: "@ITEMS_T1_SILVERBAG_NONTRADABLE_DESC", Index: "474", … }
+​
+73: Object { LocalizationNameVariable: "@ITEMS_T1_SKILLBOOK_NONTRADABLE", LocalizationDescriptionVariable: "@ITEMS_T1_SKILLBOOK_NONTRADABLE_DESC", Index: "465", … }
+​
+74: Object { LocalizationNameVariable: "@ITEMS_T1_ARMOR_LEATHER_SET1", LocalizationDescriptionVariable: "@ITEMS_T1_ARMOR_LEATHER_SET1_DESC", Index: "3759", … }
+​
+75: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_MAGIC_EMBLEM_GROUND_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2899", … }
+​
+76: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_NATURE_EMBLEM_GROUND_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2901", … }
+​
+77: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_VALOR_EMBLEM_GROUND_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2913", … }
+​
+78: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_SWORD_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2909", … }
+​
+79: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_WARRIOR_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2910", … }
+​
+80: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_HUNTER_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2904", … }
+​
+81: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_MAGE_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2906", … }
+​
+82: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_FARM_DECO_D", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2895", … }
+​
+83: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2902", … }
+​
+84: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_A_BROKEN", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2903", … }
+​
+85: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_HUNTER_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2905", … }
+​
+86: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_WARRIOR_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2911", … }
+​
+87: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_STONE_STATUE_MAGE_B", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2907", … }
+​
+88: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_BARREL_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2931", … }
+​
+89: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_FENCE_WATCHTOWER_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2921", … }
+​
+90: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_VEGETATION_FLOWER_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2927", … }
+​
+91: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_FLOOR_SIGN_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2922", … }
+​
+92: Object { LocalizationNameVariable: "@ITEMS_PLAYERISLAND_FURNITUREITEM_WOOD_LAUNDRY_A", LocalizationDescriptionVariable: "@ITEMS_FURNITUREITEM_PLAYERISLAND_DESC", Index: "2925", … }
+​
+93: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_SHOES_RUBBERBANDING", LocalizationDescriptionVariable: "@ITEMS_UNIQUE_SHOES_RUBBERBANDING_DESC", Index: "3040", … }
+​
+94: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_GVGTOKEN_GENERIC", LocalizationDescriptionVariable: "@ITEMS_UNIQUE_GVGTOKEN_GENERIC_DESC", Index: "9134", … }
+​
+95: Object { LocalizationNameVariable: "@ITEMS_UNIQUE_TOKEN_COMMUNITY", LocalizationDescriptionVariable: "@ITEMS_UNIQUE_TOKEN_COMMUNITY_DESC", Index: "10271", … }
+​
+length: 96
+​
+<prototype>: Array []
+script.js:39:11

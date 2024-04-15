@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelector('li a[class="T1"]').addEventListener('click', function(event) {
     sortTier = "T1";
-    AllData = selectOnlyTier(1, IsFetching);
+    AllData = selectOnlyTier(1);
     Items = [];
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -97,12 +97,12 @@ document.addEventListener('DOMContentLoaded', function() {
       AddCards();
     }
     SortMenuTextT.textContent =  sortTier.concat(" ▼");
-    //SousMenuT.style.display = "none";
+    SousMenuT.style.display = "none";
   });
 
   document.querySelector('li a[class="T2"]').addEventListener('click', function(event) {
     sortTier = "T2";
-    AllData = selectOnlyTier(2, IsFetching);
+    AllData = selectOnlyTier(2);
     Items = [];
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -112,12 +112,12 @@ document.addEventListener('DOMContentLoaded', function() {
       AddCards();
     }
     SortMenuTextT.textContent =  sortTier.concat(" ▼");
-    //SousMenuT.style.display = "none";
+    SousMenuT.style.display = "none";
   });
   
   document.querySelector('li a[class="T3"]').addEventListener('click', function(event) {
     sortTier = "T3";
-    AllData = selectOnlyTier(3, IsFetching);
+    AllData = selectOnlyTier(3);
     Items = []; 
     currentItems = 0;
     if (wasWriting) {
@@ -128,12 +128,12 @@ document.addEventListener('DOMContentLoaded', function() {
       AddCards();
     }
     SortMenuTextT.textContent =  sortTier.concat(" ▼");
-    //SousMenuT.style.display = "none";
+    SousMenuT.style.display = "none";
   });
   
   document.querySelector('li a[class="T4"]').addEventListener('click', function(event) {
     sortTier = "T4";
-    AllData = selectOnlyTier(4, IsFetching);
+    AllData = selectOnlyTier(4);
     Items = []; 
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -143,12 +143,12 @@ document.addEventListener('DOMContentLoaded', function() {
       AddCards();
     }
     SortMenuTextT.textContent =  sortTier.concat(" ▼");
-    //SousMenuT.style.display = "none";
+    SousMenuT.style.display = "none";
   });
 
   document.querySelector('li a[class="T5"]').addEventListener('click', function(event) {
     sortTier = "T5";
-    AllData = selectOnlyTier(5, IsFetching);
+    AllData = selectOnlyTier(5);
     Items = []; 
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -158,12 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
       AddCards();
     }
     SortMenuTextT.textContent =  sortTier.concat(" ▼");
-    //SousMenuT.style.display = "none";
+    SousMenuT.style.display = "none";
   });
   
   document.querySelector('li a[class="T6"]').addEventListener('click', function(event) {
     sortTier = "T6";
-    AllData = selectOnlyTier(6, IsFetching);
+    AllData = selectOnlyTier(6);
     Items = []; 
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelector('li a[class="T7"]').addEventListener('click', function(event) {
     sortTier = "T7";
-    AllData = selectOnlyTier(7, IsFetching);
+    AllData = selectOnlyTier(7);
     Items = []; 
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelector('li a[class="T8"]').addEventListener('click', function(event) {
     sortTier = "T8";
-    AllData = selectOnlyTier(8, IsFetching);
+    AllData = selectOnlyTier(8);
     Items = []; 
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelector('li a[class="All"]').addEventListener('click', function(event) {
     sortTier = "All tiers";
-    AllData = selectOnlyTier(9, IsFetching);
+    AllData = selectOnlyTier(9);
     Items = []; 
     if (wasWriting) {
       currentItemsSearch = 0;
@@ -219,5 +219,77 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     SortMenuTextT.textContent =  sortTier.concat(" ▼");
     SousMenuT.style.display = "none";
+  });
+
+
+  //Trie par niveau:
+  SortMenuTextL.addEventListener('touchstart', function(event) {
+    SortMenuTextL.textContent = sortLevel.concat(" ▲")
+    SousMenuL.style.display = "block";
+  })
+
+  document.addEventListener('mousemove', function(event) {
+    let tolerance = 11;
+    let rect = SortMenuTextT.getBoundingClientRect();
+    let mouseX = event.clientX;
+    let mouseY = event.clientY;
+
+    if (
+      mouseX >= rect.left - tolerance &&
+      mouseX <= rect.right + tolerance &&
+      mouseY >= rect.top - tolerance &&
+      mouseY <= rect.bottom + tolerance
+    ) {} else if(
+      !SortMenuTextL.contains(event.target) && 
+      !SousMenuL.contains(event.target)) {
+      SortMenuTextL.textContent = sortLevel.concat(" ▼");
+    }
+  });
+
+  SortMenuTextL.addEventListener('mouseenter', function(event) {
+    SortMenuTextL.textContent = sortLevel.concat(" ▲")
+    SousMenuL.style.display = "block";
+  })
+
+  document.querySelector('li a[class="0"]').addEventListener('click', function(event) {
+    sortLevel = "0";
+    
+    SortMenuTextL.textContent =  sortLevel.concat(" ▼");
+    SousMenuL.style.display = "none";
+  });
+
+  document.querySelector('li a[class="1"]').addEventListener('click', function(event) {
+    sortLevel = "1";
+    
+    SortMenuTextL.textContent =  sortLevel.concat(" ▼");
+    SousMenuL.style.display = "none";
+  });
+
+  document.querySelector('li a[class="2"]').addEventListener('click', function(event) {
+    sortLevel = "2";
+    
+    SortMenuTextL.textContent =  sortLevel.concat(" ▼");
+    SousMenuL.style.display = "none";
+  });
+
+  document.querySelector('li a[class="3"]').addEventListener('click', function(event) {
+    sortLevel = "3";
+    
+    SortMenuTextL.textContent =  sortLevel.concat(" ▼");
+    SousMenuL.style.display = "none";
+  });
+
+  document.querySelector('li a[class="4"]').addEventListener('click', function(event) {
+    sortLevel = "4";
+    
+    SortMenuTextL.textContent =  sortLevel.concat(" ▼");
+    SousMenuL.style.display = "none";
+  });
+
+  document.querySelector('li a[class="AllL"]').addEventListener('click', function(event) {
+    sortLevel = "All levels";
+    
+    SortMenuTextL.textContent =  sortLevel.concat(" ▼");
+    SousMenuL.style.display = "none";
   });
 });

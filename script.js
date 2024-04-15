@@ -5,6 +5,8 @@ const CardsPerPage = 100
 const baseURL = "https://render.albiononline.com/v1/item/"
 const SortMenuTextAZ = document.querySelector('li a[class="SortMenuTextAZ"]')
 const SortMenuTextT = document.querySelector('li a[class="SortMenuTextT"]')
+const SortMenuTextL = document.querySelector('li a[class="SortMenuTextL"]')
+const SousMenuL = document.querySelector('ul[class="SousMenuScrL"]');
 const SousMenuAZ = document.querySelector('ul[class="SousMenuScrAZ"]');
 const SousMenuT = document.querySelector('ul[class="SousMenuScrT"]');
 
@@ -18,17 +20,15 @@ let currentItemsSearch = 0;
 let wasWriting = false;
 let sortAZ = "A à Z";
 let sortTier = "All tiers";
+let sortLevel = "All levels";
 let timeoutId;
 let ItemsAllTiers;
 let AllDataTier = [];
 let SearchValue;
-let IsFetching = false;
 
-function selectOnlyTier(tier, eee) {
-  console.log("tier: ", tier, "IsFetching: ", IsFetching)
+function selectOnlyTier(tier) {
+  console.log("tier: ", tier)
   AllDataTier = [];
-  IsFetching = true;
-  console.log("IsFetching: ", IsFetching)
   if (tier !== 9) {
     ItemsAllTiers.forEach((item) => {
       if (Tiers["T".concat(tier)].hasOwnProperty(item.UniqueName)) {
@@ -40,7 +40,11 @@ function selectOnlyTier(tier, eee) {
   }
 
   console.log(AllDataTier);
-  IsFetching = false;
+  if (AllDataTier.length <= currentItems) {
+    document.querySelector(".btn-afficher-plus").style.display = "none";
+  } else {
+    document.querySelector(".btn-afficher-plus").style.display = "block";
+  }
   return AllDataTier;
 }
 
@@ -209,7 +213,6 @@ async function FetchData() {
   Items = []; 
   currentItems = 0;
   currentItemsSearch = 0;
-  IsFetching = true;
   await fetch("https://aomp.vercel.app/item.json")
   .then((res) => res.json())
   .then((data) => {
@@ -226,7 +229,6 @@ async function FetchData() {
     }
     AddCards()
   })
-  IsFetching = false;
 }
 
 GetTiers();
@@ -236,11 +238,13 @@ document.querySelector(".btn-afficher-plus").addEventListener("click", () => {
   
   if (wasWriting == false) {
     AddCards()
+    if (AllData.length <= currentItems) {
+      document.querySelector(".btn-afficher-plus").style.display = "none";
+    }
   } else {
+    AddCardsSearch()
     if (AllDataSearch.length <= currentItemsSearch) {
       document.querySelector(".btn-afficher-plus").style.display = "none";
-    } else {
-      AddCardsSearch()
     }
   }
 });

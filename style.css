@@ -1,8 +1,8 @@
 :root {
-  --body-color: #0b1419;
+  --body-color: #161719;
   --textMenuHoverSubmenus-color: #7a7a7a;
-  --foreground-color: #383842;
-  --menuHover-color: #23333c;
+  --foreground-color: #2a2c31;
+  --menuHover-color: #232a2e;
   --submenus-color: #f3f3f3;
 }
 
@@ -103,34 +103,32 @@ body {
   width: auto;
 }
 
-.SortMenu a{
+.SortMenu a {
   background: var(--foreground-color);
   display: block;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 12px; /* ajusté la taille de la police */
   font-family: 'Poppins', sans-serif;
   text-align: center;
   text-decoration: none;
-  transition: all .55s ease;
+  transition: all 0.7s ease;
   color: white;
   padding: 10px 20px;
-  font-size: 12px;
   line-height: 1.2;
   height: 15.8px;
 }
 
-.SortMenu li:hover .SousMenuScrAZ a{
-  color: var(--textMenuHoverSubmenus-color);
-  background: var(--menuHover-color);
-}
-
-.SortMenu li:hover .SousMenuScrT a{
-  color: var(--textMenuHoverSubmenus-color);
+.SortMenu a:hover {
   background: var(--menuHover-color);
 }
 
 
-.SortMenuTextAZ, .SortMenuTextT{
+.SortMenu li:hover .SousMenuScrAZ a, .SortMenu li:hover .SousMenuScrT a, .SortMenu li:hover .SousMenuScrL a{
+  color: var(--textMenuHoverSubmenus-color);
+  
+}
+
+.SortMenuTextAZ, .SortMenuTextT, .SortMenuTextL{
   line-height: .6;
   border-radius: 5px;
 }
@@ -163,6 +161,12 @@ li:hover #Sousmenu {
   float: none;
   width: 100%;
   line-height: 0.2;
+  width: 100%;
+  transition: width 0.3s;
+}
+ 
+#Sousmenu li:hover{
+  width: calc(100% - 5px);
 }
 
 #Sousmenu a:hover{

@@ -1,7 +1,7 @@
 const ItemCardTemplate = document.querySelector("[data-item-template]");
 const ItemCardContainer = document.querySelector("[data-item-cards-container]");
 const SearchInput = document.querySelector("[data-search]");
-const CardsPerPage = 75
+const CardsPerPage = 100
 const baseURL = "https://render.albiononline.com/v1/item/"
 const SortMenuTextAZ = document.querySelector('li a[class="SortMenuTextAZ"]')
 const SortMenuTextT = document.querySelector('li a[class="SortMenuTextT"]')
@@ -22,10 +22,13 @@ let timeoutId;
 let ItemsAllTiers;
 let AllDataTier = [];
 let SearchValue;
+let IsFetching = false;
 
-function selectOnlyTier(tier) {
-  console.log("tier: ", tier)
+function selectOnlyTier(tier, eee) {
+  console.log("tier: ", tier, "IsFetching: ", IsFetching)
   AllDataTier = [];
+  IsFetching = true;
+  console.log("IsFetching: ", IsFetching)
   if (tier !== 9) {
     ItemsAllTiers.forEach((item) => {
       if (Tiers["T".concat(tier)].hasOwnProperty(item.UniqueName)) {
@@ -37,6 +40,7 @@ function selectOnlyTier(tier) {
   }
 
   console.log(AllDataTier);
+  IsFetching = false;
   return AllDataTier;
 }
 
@@ -205,6 +209,7 @@ async function FetchData() {
   Items = []; 
   currentItems = 0;
   currentItemsSearch = 0;
+  IsFetching = true;
   await fetch("https://aomp.vercel.app/item.json")
   .then((res) => res.json())
   .then((data) => {
@@ -221,6 +226,7 @@ async function FetchData() {
     }
     AddCards()
   })
+  IsFetching = false;
 }
 
 GetTiers();

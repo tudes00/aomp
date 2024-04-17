@@ -9,12 +9,15 @@ const SortMenuTextL = document.querySelector('li a[class="SortMenuTextL"]')
 const SousMenuL = document.querySelector('ul[class="SousMenuScrL"]');
 const SousMenuAZ = document.querySelector('ul[class="SousMenuScrAZ"]');
 const SousMenuT = document.querySelector('ul[class="SousMenuScrT"]');
-
+const NoResults = document.querySelector('[class="No-Results"]');
 
 let AllData = [];
 let Tiers = {};
-let AllDataSearch = "";
-let Items = []; 
+let AllDataSearch = "nothing";
+let Items = [];
+let AllDataTier = [];
+let AllDataLevel = [];
+let AllDataTierLevel = [];
 let currentItems = 0;
 let currentItemsSearch = 0;
 let wasWriting = false;
@@ -22,24 +25,26 @@ let sortAZ = "A à Z";
 let sortTier = "All tiers";
 let sortLevel = "All levels";
 let timeoutId;
-let ItemsAllTiers;
-let AllDataTier = [];
+let ItemsAll;
 let SearchValue;
+let IsSortingByLevels = false;
+let IsSortingByTiers = false;
 
 function selectOnlyTier(tier) {
   console.log("tier: ", tier)
   AllDataTier = [];
   if (tier !== 9) {
-    ItemsAllTiers.forEach((item) => {
+    IsSortingByTiers = true;
+    ItemsAll.forEach((item) => {
       if (Tiers["T".concat(tier)].hasOwnProperty(item.UniqueName)) {
         AllDataTier.push(item);
       }
     });
   } else {
-    AllDataTier = ItemsAllTiers;
+    IsSortingByTiers = false;
+    AllDataTier = ItemsAll;
   }
 
-  console.log(AllDataTier);
   if (AllDataTier.length <= currentItems) {
     document.querySelector(".btn-afficher-plus").style.display = "none";
   } else {
@@ -48,6 +53,110 @@ function selectOnlyTier(tier) {
   return AllDataTier;
 }
 
+function selectOnlyLevel(level) {
+  console.log("level: ", level)
+  AllDataLevel = [];
+  if (level !== 5 & level !== 0) {
+    
+    console.log("1level: ", level)
+    IsSortingByLevels = true;
+    ItemsAll.forEach((item) => {
+      if (item.UniqueName.includes("@".concat(level))) {
+        AllDataLevel.push(item);
+      }
+    });
+  } else if (level == 5){
+    
+    console.log("2level: ", level)
+    IsSortingByLevels = false;
+    AllDataLevel = ItemsAll;
+  } else {
+    console.log("3level: ", level)
+    IsSortingByLevels = true;
+    ItemsAll.forEach((item) => {
+      if (!item.UniqueName.includes("@")) {
+        AllDataLevel.push(item);
+      }
+    });
+  }
+
+  console.log(AllDataLevel);
+  if (AllDataLevel.length <= currentItems) {
+    document.querySelector(".btn-afficher-plus").style.display = "none";
+  } else {
+    document.querySelector(".btn-afficher-plus").style.display = "block";
+  }
+  return AllDataLevel;
+}
+
+function selectOnlyTierLevel(tier, level) {
+  console.log(tier, level);
+  
+  AllDataTierLevel = [];
+  if (level === null) {
+    if (sortLevel === "All levels") {
+      level = 5
+    }else {
+      level = sortLevel
+    }
+  }
+  if (tier === null) {
+    if (sortTier === "All tiers") {
+      tier = 9
+    } else {
+      tier = sortTier
+    }
+  }else {
+    tier = "T".concat(tier)
+  }
+  console.log("Level est différent de 5 ? ", level != 5);
+  console.log("Level est différent de 0 ? ", level != 0);
+  console.log("Tier est différent de 'T9' ? ", tier != "T9");
+
+  if (level != 5 && level != 0 && tier != "T9") {
+    console.log("La condition est vraie : ", tier, level);
+    IsSortingByLevels = true;
+    IsSortingByTiers = true;
+    AllDataTierLevel = [];
+    ItemsAll.forEach((item) => {
+      if (item.UniqueName.includes("@".concat(level)) & Tiers[tier].hasOwnProperty(item.UniqueName)) {
+        AllDataTierLevel.push(item);
+      }
+    });
+  } else if (level == 5){
+    IsSortingByLevels = false;
+    console.log('2')
+    AllDataTierLevel = selectOnlyTier(tier.slice(1, 2));
+  } else if (level == 0 & tier != "T9"){
+    IsSortingByLevels = true;
+    console.log('0, 9 aaaaaaaa')
+    ItemsAll.forEach((item) => {
+      if (!item.UniqueName.includes("@") & Tiers[tier].hasOwnProperty(item.UniqueName)) {
+        AllDataTierLevel.push(item);
+      }
+    });
+  } else if (level == 0 & tier == 9){
+    IsSortingByLevels = true;
+    console.log('3')
+    ItemsAll.forEach((item) => {
+      if (!item.UniqueName.includes("@")) {
+        AllDataTierLevel.push(item);
+      }
+    });
+  } else if (tier == "T9") {
+    IsSortingByTiers = false;
+    console.log('4')
+    AllDataTierLevel = selectOnlyLevel(level);
+  }
+
+  
+  if (AllDataTierLevel.length <= currentItems) {
+    document.querySelector(".btn-afficher-plus").style.display = "none";
+  } else {
+    document.querySelector(".btn-afficher-plus").style.display = "block";
+  }
+  return AllDataTierLevel;
+}
 
 function isImgUrl(url) {
   const img = new Image();
@@ -103,7 +212,6 @@ function sort(data, tf) {
         }
         return 0;
     })
-    console.log(AllDataSearch)
   }
 }
 
@@ -173,6 +281,11 @@ SearchInput.addEventListener("input", (e) => {
     if (value) {
       AllDataSearch = searchItems(value);
       console.log(AllDataSearch.length, currentItemsSearch)
+      if (AllDataSearch.length == 0) {
+        NoResults.style.display = "block";
+      } else {
+        NoResults.style.display = "none";
+      }
       if (AllDataSearch.length <= currentItemsSearch) {
         console.log("aaaaa")
         Items = searchItems(value)
@@ -191,10 +304,12 @@ SearchInput.addEventListener("input", (e) => {
       currentItems = 0;
       currentItemsSearch = 0;
       AddCards()
+      NoResults.style.display = "none";
       document.querySelector(".btn-afficher-plus").style.display = "block"
+      AllDataSearch = "nothing";
       wasWriting = false;
     }
-  }, 200);
+  }, 400);
   
 });
 
@@ -209,7 +324,7 @@ async function GetTiers() {
 
 async function FetchData() {
   AllData = [];
-  AllDataSearch = "";
+  AllDataSearch = "nothing";
   Items = []; 
   currentItems = 0;
   currentItemsSearch = 0;
@@ -221,18 +336,36 @@ async function FetchData() {
         AllData.push(item);
       }
     })
-    sort(data, true)
+    sort(AllData, true)
     
-    ItemsAllTiers = AllData;
+    ItemsAll = AllData;
+    console.log("sortTier: ", sortTier);
+    console.log("sortLevel: ", sortLevel);
+    console.log("IsSortingByLevels: ", IsSortingByLevels);
+    console.log("IsSortingByTiers: ", IsSortingByTiers);
     if (sortTier !== "All tiers") {
-      AllData = selectOnlyTier(sortTier.slice(1, 2));
+      if (!IsSortingByLevels) {
+        AllData = selectOnlyTier(sortTier.slice(1, 2));
+      }else {
+        AllData = selectOnlyTierLevel(sortTier.slice(1, 2), null);
+      }
+    }
+
+    if (sortLevel !== "All levels") {
+      if (!IsSortingByTiers) {
+        console.log("selectonlylevel")
+        AllData = selectOnlyLevel(sortLevel);
+      }else {
+        AllData = selectOnlyTierLevel(null, sortLevel);
+      }
     }
     AddCards()
   })
 }
 
 GetTiers();
-FetchData()
+FetchData();
+NoResults.style.display = "none";
 
 document.querySelector(".btn-afficher-plus").addEventListener("click", () => {
   

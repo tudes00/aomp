@@ -174,13 +174,6 @@ function compareStrings(a, b) {
   if (sortAZ === "A à Z") {return (a < b) ? -1 : (a > b) ? 1 : 0} else {return (a > b) ? -1 : (a < b) ? 1 : 0}
 }
 
-//empeche le rechargment de la page lorsqu'un menu pour trier est utiliser
-document.querySelectorAll('.SortMenu a').forEach(item => {
-  item.addEventListener('click', function(e) {
-    e.preventDefault();
-  });
-});
-
 function sort(data, tf) {
   const categories = {};
   data.forEach((element) => {
@@ -270,48 +263,7 @@ function searchItems(query) {
 }
 
 
-SearchInput.addEventListener("input", (e) => {
-  clearTimeout(timeoutId);
 
-  timeoutId = setTimeout(() =>{
-    wasWriting = true;
-    const value = e.target.value.toLowerCase();
-    SearchValue = value;
-    Items = [];
-    if (value) {
-      AllDataSearch = searchItems(value);
-      console.log(AllDataSearch.length, currentItemsSearch)
-      if (AllDataSearch.length == 0) {
-        NoResults.style.display = "block";
-      } else {
-        NoResults.style.display = "none";
-      }
-      if (AllDataSearch.length <= currentItemsSearch) {
-        console.log("aaaaa")
-        Items = searchItems(value)
-        document.querySelector(".btn-afficher-plus").style.display = "none";
-        sort(AllDataSearch, false)
-        UpdateCards()
-      } else {
-        console.log("ah");
-        AddCardsSearch()
-        
-        document.querySelector(".btn-afficher-plus").style.display = "block";
-      }
-  
-    } else {
-      Items = [];
-      currentItems = 0;
-      currentItemsSearch = 0;
-      AddCards()
-      NoResults.style.display = "none";
-      document.querySelector(".btn-afficher-plus").style.display = "block"
-      AllDataSearch = "nothing";
-      wasWriting = false;
-    }
-  }, 400);
-  
-});
 
 async function GetTiers() {
   await fetch("https://aomp.vercel.app/TiersData.json")
@@ -366,18 +318,3 @@ async function FetchData() {
 GetTiers();
 FetchData();
 NoResults.style.display = "none";
-
-document.querySelector(".btn-afficher-plus").addEventListener("click", () => {
-  
-  if (wasWriting == false) {
-    AddCards()
-    if (AllData.length <= currentItems) {
-      document.querySelector(".btn-afficher-plus").style.display = "none";
-    }
-  } else {
-    AddCardsSearch()
-    if (AllDataSearch.length <= currentItemsSearch) {
-      document.querySelector(".btn-afficher-plus").style.display = "none";
-    }
-  }
-});

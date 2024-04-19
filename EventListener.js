@@ -281,3 +281,141 @@ document.addEventListener('DOMContentLoaded', function() {
     SousMenuL.style.display = "none";
   });
 });
+
+//empeche le rechargment de la page lorsqu'un menu pour trier est utiliser
+document.querySelectorAll('.SortMenu a').forEach(item => {
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+  });
+});
+
+SearchInput.addEventListener("input", (e) => {
+  clearTimeout(timeoutId);
+
+  timeoutId = setTimeout(() =>{
+    wasWriting = true;
+    const value = e.target.value.toLowerCase();
+    SearchValue = value;
+    Items = [];
+    if (value) {
+      AllDataSearch = searchItems(value);
+      console.log(AllDataSearch.length, currentItemsSearch)
+      if (AllDataSearch.length == 0) {
+        NoResults.style.display = "block";
+      } else {
+        NoResults.style.display = "none";
+      }
+      if (AllDataSearch.length <= currentItemsSearch) {
+        console.log("aaaaa")
+        Items = searchItems(value)
+        document.querySelector(".btn-afficher-plus").style.display = "none";
+        sort(AllDataSearch, false)
+        UpdateCards()
+      } else {
+        console.log("ah");
+        AddCardsSearch()
+        
+        document.querySelector(".btn-afficher-plus").style.display = "block";
+      }
+  
+    } else {
+      Items = [];
+      currentItems = 0;
+      currentItemsSearch = 0;
+      AddCards()
+      NoResults.style.display = "none";
+      document.querySelector(".btn-afficher-plus").style.display = "block"
+      AllDataSearch = "nothing";
+      wasWriting = false;
+    }
+  }, 400);
+  
+});
+
+
+document.querySelector(".btn-afficher-plus").addEventListener("click", () => {
+  
+  if (wasWriting == false) {
+    AddCards()
+    if (AllData.length <= currentItems) {
+      document.querySelector(".btn-afficher-plus").style.display = "none";
+    }
+  } else {
+    AddCardsSearch()
+    if (AllDataSearch.length <= currentItemsSearch) {
+      document.querySelector(".btn-afficher-plus").style.display = "none";
+    }
+  }
+});
+
+document.getElementById("Menu").addEventListener("click", function() {
+  document.getElementById("MenuShow").style.transform = "translateX(0)";
+  setTimeout(function() {
+     document.getElementById("MenuShow").classList.add('active');
+     document.querySelector('.blurZone').classList.add('blur');
+  }, 10);
+  document.querySelector('body').style.overflow = 'hidden';
+});
+
+document.addEventListener("click", function(e) {
+  if (!document.getElementById('MenuShow').contains(e.target) && e.target !== document.getElementById('Menu')) {
+     document.getElementById("MenuShow").style.transform = "translateX(100%)";
+     document.getElementById("MenuShow").classList.remove('active');
+     document.querySelector('.blurZone').classList.remove('blur');
+     document.querySelector('body').style.overflow = 'auto';
+  }
+});
+
+const toggleColorMode = (e) => {
+  // Switch to Light Mode
+  if (e.currentTarget.classList.contains("light--hidden")) {
+    // Sets the custom HTML attribute
+    document.documentElement.setAttribute("color-mode", "light");
+
+  //Sets the user's preference in local storage
+  localStorage.setItem("color-mode", "light")
+  return;
+}
+  
+  /* Switch to Dark Mode
+  Sets the custom HTML attribute */
+  document.documentElement.setAttribute("color-mode", "dark");
+
+// Sets the user's preference in local storage
+localStorage.setItem("color-mode", "dark");
+};
+
+// Get the buttons in the DOM
+const toggleColorButtons = document.querySelectorAll(".color-mode__btn");
+
+// Set up event listeners
+toggleColorButtons.forEach(btn => {
+  btn.addEventListener("click", toggleColorMode);
+});
+
+const mediaQuery = window.matchMedia('(max-width: 628px)');
+  
+function handleMatches(e) {
+  if (e.matches) {
+    var elementADeplacer = document.getElementById('SortMenu').children;
+    var destination = document.getElementById('MenuShow');
+
+    while (elementADeplacer.length > 0) {
+      destination.appendChild(elementADeplacer[0]);
+  }
+  } else {
+    var elementADeplacer = document.getElementById('MenuShow').children;
+    var destination = document.getElementById('SortMenu');
+
+    while (elementADeplacer.length > 0) {
+      console.log(elementADeplacer[0]);
+      if (!elementADeplacer[0] == '<div class="img-switch-modeMenu">') {
+        destination.appendChild(elementADeplacer[0]);
+      }
+    }
+  }
+}
+mediaQuery.addListener(handleMatches);
+handleMatches(mediaQuery);
+
+

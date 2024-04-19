@@ -397,25 +397,18 @@ const mediaQuery = window.matchMedia('(max-width: 628px)');
   
 function handleMatches(e) {
   if (e.matches) {
-    var elementADeplacer = document.getElementById('SortMenu').children;
+    var elementADeplacer = document.getElementById('SortMenu');
     var destination = document.getElementById('MenuShow');
+    var elementReference = document.getElementById('img-switch-modeMenu')
 
-    while (elementADeplacer.length > 0) {
-      destination.appendChild(elementADeplacer[0]);
-  }
-  } else {
-    var elementADeplacer = document.getElementById('MenuShow').children;
-    var destination = document.getElementById('SortMenu');
-
-    while (elementADeplacer.length > 0) {
-      console.log(elementADeplacer[0]);
-      if (!elementADeplacer[0] == '<div class="img-switch-modeMenu">') {
-        destination.appendChild(elementADeplacer[0]);
-      }
-    }
+    destination.insertBefore(elementADeplacer, elementReference);
+  }else {
+    var elementADeplacer = document.getElementById('MenuShow').querySelector('.SortMenu');
+    var destination = document.querySelector('.Search-Sort');
+    
+    destination.appendChild(elementADeplacer);
   }
 }
 mediaQuery.addListener(handleMatches);
 handleMatches(mediaQuery);
-
 

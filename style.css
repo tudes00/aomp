@@ -20,7 +20,6 @@
     display: none;
 }
 
-/* Any element with the class "dark--hidden" will be hidden when the site is set to Dark Mode */
 :root[color-mode="dark"] .dark--hidden {
     display: none;
 }
@@ -155,13 +154,16 @@ body {
 	height: 15.8px;
 }
 
-.SortMenu a:hover, .Menu:hover{
+.SortMenu a:hover, .Menu:hover, .SortMenu a:active, .Menu:active{
 	background: var(--menuHover-color);
 }
 
 .SortMenu li:hover .SousMenuScrAZ a,
 .SortMenu li:hover .SousMenuScrT a,
-.SortMenu li:hover .SousMenuScrL a {
+.SortMenu li:hover .SousMenuScrL a,
+.SortMenu li:active .SousMenuScrAZ a,
+.SortMenu li:active .SousMenuScrT a,
+.SortMenu li:active .SousMenuScrL a {
 	color: var(--textMenuHoverSubmenus-color);
 }
 
@@ -185,7 +187,8 @@ body {
 	border-radius: 5px;
 }
 
-li:hover #Sousmenu {
+li:hover #Sousmenu, 
+li:active #Sousmenu {
 	top: auto;
 	opacity: 1;
 	visibility: visible;
@@ -202,11 +205,11 @@ li:hover #Sousmenu {
 	transition: width 0.3s;
 }
 
-#Sousmenu li:hover {
+#Sousmenu li:hover, #Sousmenu li:active {
 	width: calc(100% - 5px);
 }
 
-#Sousmenu a:hover {
+#Sousmenu a:hover, #Sousmenu a:active {
 	transition: all .2s ease;
 	color: black;
 }
@@ -235,7 +238,7 @@ li:hover #Sousmenu {
 	position: fixed;
 	top: 0;
 	right: 0;
-	width: 40%;
+	width: 41%;
 	height: 100%;
 	background: var(--body-color);
 	transform: translateX(100%);
@@ -280,7 +283,9 @@ li:hover #Sousmenu {
 
 @media screen and (max-width: 628px) {
 	.SortMenu {
-		display: none;
+		position: relative;
+		left: 10px;
+		top: 10px;
 	}
 
 	.img-switch-mode {
@@ -288,13 +293,15 @@ li:hover #Sousmenu {
 	}
 
 	.img-switch-modeMenu {
-		position: relative;
-		left: 10px;
-		top: 10px;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
 		cursor: pointer;
 	}
 
 	.Menu {
 		display: block;
 	}
+
+	
 }

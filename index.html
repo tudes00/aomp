@@ -5,17 +5,17 @@
   <meta name="robots" content="noindex">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Albion Online Market Prices</title>
-  <link rel="icon" type="image/x-icon" href="logo.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="./img/logo.png">
+  <link rel="stylesheet" href="main.css">
   <script src="script.js" defer></script>
-  <script src="EventListener.js" defer></script>
+  <script src="./EventListener/EventListener.js" defer></script>
+  <script src="./EventListener/EventListenerAZ.js" defer></script>
+  <script src="./EventListener/EventListenerLevel.js" defer></script>
+  <script src="./EventListener/EventListenerTiers.js" defer></script>
+  <script src="./EventListener/EventListenerLang.js" defer></script>
   <script src="/_vercel/insights/script.js" defer></script>
   <script>
-    if (
-      localStorage.getItem("color-mode") === "light" ||
-      (window.matchMedia("(prefers-color-scheme: light)").matches &&
-        !localStorage.getItem("color-mode"))
-    ) {
+    if ( localStorage.getItem("color-mode") === "light" || (window.matchMedia("(prefers-color-scheme: light)").matches && !localStorage.getItem("color-mode"))) {
       document.documentElement.setAttribute("color-mode", "light");
     }
   </script>
@@ -23,8 +23,8 @@
 <body>
   <div id="MenuShow">
      <div id="img-switch-modeMenu" class="img-switch-modeMenu">
-      <img  class="color-mode__btn light--hidden" aria-label="Toggle light mode" src="sun.png" alt=""> 
-      <img  class="color-mode__btn dark--hidden" aria-label="Toggle dark mode" src="moon.png" alt=""> 
+      <img  class="color-mode__btn light--hidden" aria-label="Toggle light mode" src="./img/sun.png" alt=""> 
+      <img  class="color-mode__btn dark--hidden" aria-label="Toggle dark mode" src="./img/moon.png" alt=""> 
     </div>
  </div>
   <div class="blurZone">
@@ -34,10 +34,10 @@
       </div>
       <ul id="SortMenu" class="SortMenu">
         <li>
-          <a href="" class="SortMenuTextAZ">A à Z ▼</a>
+          <a href="" class="SortMenuTextAZ">A to Z ▼</a>
           <ul id="Sousmenu" class="SousMenuScrAZ">
-            <li><a href="" class="A-Z">A à Z</a></li>
-            <li><a href="" class="Z-A">Z à A</a></li>
+            <li><a href="" class="A-Z">A to Z</a></li>
+            <li><a href="" class="Z-A">Z to A</a></li>
           </ul>
         </li>
         <li>
@@ -65,10 +65,29 @@
             <li><a href="" class="AllL">All levels</a></li>
           </ul>
         </li>
+        <li>
+          <a href="" class="SortMenuTextLa">🇫🇷 FR ▼</a>
+          <ul id="Sousmenu" class="SousMenuScrLa">
+            <li><a href="" class="FR">🇫🇷 FR</a></li>
+            <li><a href="" class="EN">🇬🇧 EN</a></li>
+            <li><a href="" class="DE">🇩🇪 DE</a></li>
+            <li><a href="" class="RU">🇷🇺 RU</a></li>
+            <li><a href="" class="PL">🇵🇱 PL</a></li>
+            <li><a href="" class="ES">🇪🇸 ES</a></li>
+            <li><a href="" class="PT">🇵🇹 PT</a></li>
+            <li><a href="" class="IT">🇮🇹 IT</a></li>
+            <li><a href="" class="KO">🇰🇷 KR</a></li>
+            <li><a href="" class="JA">🇯🇵 JP</a></li>
+            <li><a href="" class="ZH">🇨🇳 CN</a></li>
+            <li><a href="" class="ID">🇮🇩 ID</a></li>
+            <li><a href="" class="TR">🇹🇷 TR</a></li>
+            <li><a href="" class="AR">🇦🇪 AR</a></li>
+          </ul>
+        </li>
       </ul>
       <div class="img-switch-mode">
-        <img  class="color-mode__btn light--hidden" aria-label="Toggle light mode" src="sun.png" alt=""> 
-        <img  class="color-mode__btn dark--hidden" aria-label="Toggle dark mode" src="moon.png" alt=""> 
+        <img  class="color-mode__btn light--hidden" aria-label="Toggle light mode" src="./img/sun.png" alt=""> 
+        <img  class="color-mode__btn dark--hidden" aria-label="Toggle dark mode" src="./img/moon.png" alt=""> 
       </div>
       <button class="Menu", id="Menu">☰</button>
     </div>
@@ -83,6 +102,16 @@
       <div class="card">
         <img src="" alt="" class="image" data-image>
         <div class="header" data-header></div>
+        <div class="prices">
+          <div class="martlock">----</div>
+          <div class="brecilien">----</div>
+          <div class="black-market">----</div>
+          <div class="caerleon">----</div>
+          <div class="bridgewatch">----</div>
+          <div class="fort-sterling">----</div>
+          <div class="thetford">----</div>
+          <div class="lymhurst">----</div>
+        </div>
       </div>
     </template>
   </div>

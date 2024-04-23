@@ -6,6 +6,8 @@ const baseURL = "https://render.albiononline.com/v1/item/"
 const SortMenuTextAZ = document.querySelector('li a[class="SortMenuTextAZ"]')
 const SortMenuTextT = document.querySelector('li a[class="SortMenuTextT"]')
 const SortMenuTextL = document.querySelector('li a[class="SortMenuTextL"]')
+const SortMenuTextLa = document.querySelector('li a[class="SortMenuTextLa"]')
+const SousMenuLa = document.querySelector('ul[class="SousMenuScrLa"]');
 const SousMenuL = document.querySelector('ul[class="SousMenuScrL"]');
 const SousMenuAZ = document.querySelector('ul[class="SousMenuScrAZ"]');
 const SousMenuT = document.querySelector('ul[class="SousMenuScrT"]');
@@ -21,7 +23,7 @@ let AllDataTierLevel = [];
 let currentItems = 0;
 let currentItemsSearch = 0;
 let wasWriting = false;
-let sortAZ = "A à Z";
+let sortAZ = "A to Z";
 let sortTier = "All tiers";
 let sortLevel = "All levels";
 let timeoutId;
@@ -29,6 +31,15 @@ let ItemsAll;
 let SearchValue;
 let IsSortingByLevels = false;
 let IsSortingByTiers = false;
+
+if ( !localStorage.getItem("language") || !localStorage.getItem("languageCool")) {
+  console.log("No language")
+  localStorage.setItem("language", "EN-US");
+  localStorage.setItem("languageCool", "🇬🇧 EN");
+}
+
+let Language = localStorage.getItem("language");
+let LanguageCool = localStorage.getItem("languageCool");
 
 function selectOnlyTier(tier) {
   console.log("tier: ", tier)
@@ -171,7 +182,7 @@ function compareStrings(a, b) {
   a = a.toLowerCase();
   b = b.toLowerCase();
 
-  if (sortAZ === "A à Z") {return (a < b) ? -1 : (a > b) ? 1 : 0} else {return (a > b) ? -1 : (a < b) ? 1 : 0}
+  if (sortAZ === "A to Z") {return (a < b) ? -1 : (a > b) ? 1 : 0} else {return (a > b) ? -1 : (a < b) ? 1 : 0}
 }
 
 function sort(data, tf) {
@@ -212,6 +223,7 @@ function UpdateCards() {
   while (ItemCardContainer.firstChild) {
     ItemCardContainer.removeChild(ItemCardContainer.firstChild);
   }
+  
   Items.forEach((item) => {
     const fullURL = baseURL.concat(item.UniqueName)
     isImgUrl(fullURL).then(isImage => {
@@ -219,7 +231,7 @@ function UpdateCards() {
         const card = ItemCardTemplate.content.cloneNode(true).children[0];
         const header = card.querySelector("[data-header]");
         const image = card.querySelector("[data-image]");
-        const Name = item.LocalizedNames['FR-FR'];
+        const Name = item.LocalizedNames[Language];
         image.src = fullURL;
         header.textContent = Name;
         ItemCardContainer.append(card);
@@ -252,9 +264,9 @@ function searchItems(query) {
   const filteredItems = AllData.filter(item => {
     if (item.LocalizedNames) {
       if (sortTier !== "All tiers") {
-        return item.LocalizedNames['FR-FR'].toLowerCase().includes(query.toLowerCase()) && Tiers["T".concat(sortTier.slice(1, 2))].hasOwnProperty(item.UniqueName);
+        return item.LocalizedNames[Language].toLowerCase().includes(query.toLowerCase()) && Tiers["T".concat(sortTier.slice(1, 2))].hasOwnProperty(item.UniqueName);
       } else {
-        return item.LocalizedNames['FR-FR'].toLowerCase().includes(query.toLowerCase());
+        return item.LocalizedNames[Language].toLowerCase().includes(query.toLowerCase());
       }
     }
     return false;

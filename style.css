@@ -34,7 +34,7 @@
 }
 
 #search {
-	background-image: url("search.png");
+	background-image: url("./img/search.png");
 	background-position: 10px center;
 	background-repeat: no-repeat;
 	padding-left: 40px;
@@ -161,15 +161,18 @@ body {
 .SortMenu li:hover .SousMenuScrAZ a,
 .SortMenu li:hover .SousMenuScrT a,
 .SortMenu li:hover .SousMenuScrL a,
+.SortMenu li:hover .SousMenuScrLa a,
 .SortMenu li:active .SousMenuScrAZ a,
 .SortMenu li:active .SousMenuScrT a,
-.SortMenu li:active .SousMenuScrL a {
+.SortMenu li:active .SousMenuScrL a,
+.SortMenu li:active .SousMenuScrLa a {
 	color: var(--textMenuHoverSubmenus-color);
 }
 
 .SortMenuTextAZ,
 .SortMenuTextT,
-.SortMenuTextL {
+.SortMenuTextL,
+.SortMenuTextLa {
 	line-height: .6;
 	border-radius: 5px;
 }
@@ -216,6 +219,10 @@ li:active #Sousmenu {
 
 #Sousmenu a {
 	background-color: var(--submenus-color);
+}
+
+.SousMenuScrLa a{
+	font-size: .97em;
 }
 
 .btn-afficher-plus {
@@ -280,6 +287,48 @@ li:active #Sousmenu {
 	width: 35.8px;
 	height: auto;
 }
+
+.prices {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+	margin-top: 10px;
+	gap: .2em;
+}
+
+.prices div {
+	border-radius: 5px;
+	width: fit-content;
+	padding-left: 2px;
+  	padding-right: 2px;
+	color: white;
+	font-size: bold;
+}
+
+.martlock {
+	background: #3874CC;
+}
+.brecilien {
+	background: #6c38cc;
+}
+.black-market {
+	background: #000000;
+}
+.caerleon {
+	background: #4A4A4A;
+}
+.bridgewatch {
+	background: #D58930;
+}
+.fort-sterling {
+	background: #7e7e7e;
+}
+.thetford {
+	background: #229F4C;
+}
+.lymhurst {
+	background: #5BA166;
+}
+
 
 @media screen and (max-width: 628px) {
 	.SortMenu {

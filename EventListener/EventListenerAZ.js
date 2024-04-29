@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (wasWriting) {
         Items = []; 
         currentItemsSearch = 0;
-        AddCardsSearch()
+        AddCards(false);
       } else{
         FetchData()
       }
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (wasWriting) {
         Items = []; 
         currentItemsSearch = 0;
-        AddCardsSearch()
+        AddCards(false)
       } else{
         FetchData()
       }

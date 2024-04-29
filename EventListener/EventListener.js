@@ -3,10 +3,10 @@ function handleSearchResults() {
 
   if (wasWriting) {
     currentItemsSearch = 0;
-    AddCardsSearch();
+    AddCards(false);
   } else {
     currentItems = 0;
-    AddCards();
+    AddCards(true);
   }
   if (AllData.length == 0 || AllDataSearch.length == 0 ) {
     console.log(AllData.length, AllDataSearch.length)
@@ -87,7 +87,7 @@ SearchInput.addEventListener("input", (e) => {
         UpdateCards()
       } else {
         console.log("ah");
-        AddCardsSearch()
+        AddCards(false)
         
         document.querySelector(".btn-afficher-plus").style.display = "block";
       }
@@ -96,13 +96,13 @@ SearchInput.addEventListener("input", (e) => {
       Items = [];
       currentItems = 0;
       currentItemsSearch = 0;
-      AddCards()
+      AddCards(true)
       NoResults.style.display = "none";
       document.querySelector(".btn-afficher-plus").style.display = "block"
       AllDataSearch = "nothing";
       wasWriting = false;
     }
-  }, 500);
+  }, 700);
   
 });
 
@@ -113,12 +113,12 @@ document.querySelector(".btn-afficher-plus").addEventListener("click", (e) => {
   let scrollPosition = window.pageYOffset;
 
   if (wasWriting == false) {
-    AddCards()
+    AddCards(true)
     if (AllData.length <= currentItems) {
       document.querySelector(".btn-afficher-plus").style.display = "none";
     }
   } else {
-    AddCardsSearch()
+    AddCards(false)
     if (AllDataSearch.length <= currentItemsSearch) {
       document.querySelector(".btn-afficher-plus").style.display = "none";
     }

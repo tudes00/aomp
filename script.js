@@ -1,8 +1,10 @@
 const ItemCardTemplate = document.querySelector("[data-item-template]");
 const ItemCardContainer = document.querySelector("[data-item-cards-container]");
 const SearchInput = document.querySelector("[data-search]");
-const CardsPerPage = 100
-const baseURL = "https://render.albiononline.com/v1/item/"
+const CardsPerPage = 100;
+const baseURLimage = "https://render.albiononline.com/v1/item/";
+const basURLPrices = "https://west.albion-online-data.com/api/v2/stats/prices/"
+const baseURLPricesEnd = "?locations=martlock,5003,black-market,caerleon,bridgewatch,fort-sterling,thetford,lymhurst&qualities=1";
 const SortMenuTextAZ = document.querySelector('li a[class="SortMenuTextAZ"]')
 const SortMenuTextT = document.querySelector('li a[class="SortMenuTextT"]')
 const SortMenuTextL = document.querySelector('li a[class="SortMenuTextL"]')
@@ -31,15 +33,21 @@ let ItemsAll;
 let SearchValue;
 let IsSortingByLevels = false;
 let IsSortingByTiers = false;
+let DataToAdd = [];
+let fullURLprices = "";
+let AllURLprices = [];
+let DataToAddURLbefore = [];
+let DataToAddURL = [];
+let DataAddedURL = 0;
+let AllPrices = [];
+let Language = localStorage.getItem("language");
+let LanguageCool = localStorage.getItem("languageCool");
 
 if ( !localStorage.getItem("language") || !localStorage.getItem("languageCool")) {
   console.log("No language")
   localStorage.setItem("language", "EN-US");
   localStorage.setItem("languageCool", "🇬🇧 EN");
 }
-
-let Language = localStorage.getItem("language");
-let LanguageCool = localStorage.getItem("languageCool");
 
 function selectOnlyTier(tier) {
   console.log("tier: ", tier)
@@ -219,45 +227,92 @@ function sort(data, tf) {
   }
 }
 
-function UpdateCards() {
+async function UpdateCards() {
+  while (AllPrices.length == 0) {
+    console.log("aaa")
+    await new Promise(resolve => setTimeout(resolve, 1000))
+  }
+  console.log("hello")
   while (ItemCardContainer.firstChild) {
     ItemCardContainer.removeChild(ItemCardContainer.firstChild);
   }
   
   Items.forEach((item) => {
-    const fullURL = baseURL.concat(item.UniqueName)
-    isImgUrl(fullURL).then(isImage => {
+    const fullURLimage = baseURLimage.concat(item.UniqueName)
+    isImgUrl(fullURLimage).then(isImage => {
       if (isImage) {
         const card = ItemCardTemplate.content.cloneNode(true).children[0];
         const header = card.querySelector("[data-header]");
         const image = card.querySelector("[data-image]");
+        const bridgewatch = card.querySelector("[bridgewatch]");
         const Name = item.LocalizedNames[Language];
-        image.src = fullURL;
-        header.textContent = Name;
+        const itemPrice = AllPrices.flat().find(Item => Item.city === "Bridgewatch" && Item.item_id === item.UniqueName)
+        
+        image.src = fullURLimage;
+        header.textContent = Name
+        if (itemPrice && itemPrice.sell_price_min != undefined) {
+          bridgewatch.textContent = itemPrice.sell_price_min;
+        }
         ItemCardContainer.append(card);
       }
     })
   })
 }
 
-function AddCards() {
-  AllItems = AllData.slice(currentItems, currentItems + CardsPerPage).map((item, index) => {
-    Items.push(item);
-  })
-  currentItems = Items.length;
-  UpdateCards()
+function getURL(start) {
+  fullURLprices = "";
+  DataToAddURLbefore = [];
+  DataToAddURL = [];
+  for (const item of DataToAdd.slice(start, DataToAdd.length)) {
+    DataToAddURL.push(item.UniqueName);
+    fullURLprices = basURLPrices + DataToAddURL + baseURLPricesEnd;
+    if (fullURLprices.length >= 4096) {
+      fullURLprices = basURLPrices + DataToAddURLbefore + baseURLPricesEnd;
+      break;
+    } else {
+      DataAddedURL += 1;
+      DataToAddURLbefore.push(item.UniqueName)
+    }
+  }
 }
 
-function AddCardsSearch() {
-  AllDataSearch = searchItems(SearchValue);
-  sort(AllDataSearch, false)
-  console.log(currentItemsSearch, currentItemsSearch + CardsPerPage)
-  currentItemsSearch = Items.length
-  AllItems = AllDataSearch.slice(currentItemsSearch, currentItemsSearch + CardsPerPage).map((item, index) => {
-    Items.push(item);
-  })
-  currentItemsSearch = Items.length;
-  UpdateCards()
+async function fetchPrices() {
+  while (DataAddedURL < DataToAdd.length) {
+    getURL(DataAddedURL);
+    AllURLprices.push(fullURLprices);
+  }
+  console.log(AllURLprices)
+  for (const url of AllURLprices) {
+    console.log(url)
+    await new Promise(resolve => setTimeout(resolve, 20));
+    await fetch(url, {mode: "cors"})
+    .then(res => res.json())
+    .then(data => {
+      AllPrices.push(data);
+    });
+    console.log(AllPrices)
+  }
+  
+  console.log("Toutes les requêtes de prix ont été effectuées de manière progressive.");
+  
+}
+function AddCards(tf) {
+  if (tf) {
+    AllItems = AllData.slice(currentItems, currentItems + CardsPerPage).map((item, index) => {
+      Items.push(item);
+    })
+    currentItems = Items.length;
+  } else {
+    AllDataSearch = searchItems(SearchValue);
+    sort(AllDataSearch, false)
+    console.log(currentItemsSearch, currentItemsSearch + CardsPerPage)
+    currentItemsSearch = Items.length
+    AllItems = AllDataSearch.slice(currentItemsSearch, currentItemsSearch + CardsPerPage).map((item, index) => {
+      Items.push(item);
+    })
+    currentItemsSearch = Items.length;
+  }
+  UpdateCards();
 }
 
 function searchItems(query) {
@@ -303,10 +358,10 @@ async function FetchData() {
     sort(AllData, true)
     
     ItemsAll = AllData;
-    console.log("sortTier: ", sortTier);
-    console.log("sortLevel: ", sortLevel);
-    console.log("IsSortingByLevels: ", IsSortingByLevels);
-    console.log("IsSortingByTiers: ", IsSortingByTiers);
+    DataToAdd = AllData;
+    console.log(AllData)
+    fetchPrices();
+
     if (sortTier !== "All tiers") {
       if (!IsSortingByLevels) {
         AllData = selectOnlyTier(sortTier.slice(1, 2));
@@ -323,10 +378,11 @@ async function FetchData() {
         AllData = selectOnlyTierLevel(null, sortLevel);
       }
     }
-    AddCards()
+    AddCards(true);
   })
 }
 
 GetTiers();
 FetchData();
+
 NoResults.style.display = "none";

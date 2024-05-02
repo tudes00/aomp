@@ -290,13 +290,16 @@ li:active #Sousmenu {
 
 .prices {
 	display: grid;
-	grid-template-columns: 30px, 1fr;
 	margin-top: 10px;
 	gap: .2em;
 	
 }
 
 .prices div {
+	display: inline-block;
+	border: 1px solid red;
+	padding: 1rem 1rem;
+	vertical-align: middle;
 	border-radius: 5px;
 	width: fit-content;
 	padding-left: 2px;

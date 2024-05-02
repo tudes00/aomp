@@ -3,6 +3,7 @@ const ItemCardContainer = document.querySelector("[data-item-cards-container]");
 const SearchInput = document.querySelector("[data-search]");
 const CardsPerPage = 100;
 const baseURLimage = "https://render.albiononline.com/v1/item/";
+const baseURLimagefake = "https://render.com/v1/item/";
 const basURLPrices = "https://west.albion-online-data.com/api/v2/stats/prices/"
 const baseURLPricesEnd = "?locations=martlock,5003,black-market,caerleon,bridgewatch,fort-sterling,thetford,lymhurst&qualities=1";
 const SortMenuTextAZ = document.querySelector('li a[class="SortMenuTextAZ"]')
@@ -238,7 +239,7 @@ async function UpdateCards() {
   }
   
   Items.forEach((item) => {
-    const fullURLimage = baseURLimage.concat(item.UniqueName)
+    const fullURLimage = baseURLimagefake.concat(item.UniqueName)
     isImgUrl(fullURLimage).then(isImage => {
       if (isImage) {
         const card = ItemCardTemplate.content.cloneNode(true).children[0];

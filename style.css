@@ -291,8 +291,7 @@ li:active #Sousmenu {
 .prices {
 	margin-top: 10px;
 	gap: .2em;
-	display: flex;
-	  width: 50%;
+	display: grid;
 	
 }
 
@@ -303,13 +302,7 @@ li:active #Sousmenu {
   	padding-right: 2px;
 	color: white;
 	font-size: bold;
-	flex: 1;
-	  border: 2px solid blueviolet;
-	  margin: 10px;
-}
-
-.prices div:first-child {
-	margin-right: 20px;
+	float: right;
 }
 
 .martlock {

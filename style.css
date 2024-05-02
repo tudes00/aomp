@@ -290,7 +290,7 @@ li:active #Sousmenu {
 
 .prices {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+	grid-template-columns: 30px, 1fr;
 	margin-top: 10px;
 	gap: .2em;
 	

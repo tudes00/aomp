@@ -289,23 +289,27 @@ li:active #Sousmenu {
 }
 
 .prices {
-	display: grid;
 	margin-top: 10px;
 	gap: .2em;
+	display: flex;
+	  width: 50%;
 	
 }
 
 .prices div {
-	display: inline-block;
-	border: 1px solid red;
-	padding: 1rem 1rem;
-	vertical-align: middle;
 	border-radius: 5px;
 	width: fit-content;
 	padding-left: 2px;
   	padding-right: 2px;
 	color: white;
 	font-size: bold;
+	flex: 1;
+	  border: 2px solid blueviolet;
+	  margin: 10px;
+}
+
+.prices div:first-child {
+	margin-right: 20px;
 }
 
 .martlock {

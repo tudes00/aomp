@@ -44,7 +44,7 @@ let AllPrices = [];
 let Language = localStorage.getItem("language");
 let LanguageCool = localStorage.getItem("languageCool");
 
-if ( !localStorage.getItem("language") || !localStorage.getItem("languageCool")) {
+if (!localStorage.getItem("language") || !localStorage.getItem("languageCool")) {
   console.log("No language")
   localStorage.setItem("language", "EN-US");
   localStorage.setItem("languageCool", "🇬🇧 EN");

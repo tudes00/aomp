@@ -303,11 +303,6 @@ function compressBody(body) {
 
 }
 
-let headers = new Headers();
-headers.append("Content-Type","application/json");
-headers.append("Content-Encoding","zlib");
-
-let compressedBody =  asyncCompressBody(jsonContent);
 
 async function fetchPrices() {
   while (DataAddedURL < DataToAdd.length) {
@@ -315,6 +310,12 @@ async function fetchPrices() {
     AllURLprices.push(fullURLprices);
   }
   console.log(AllURLprices)
+  let headers = new Headers();
+headers.append("Content-Type","application/json");
+headers.append("Content-Encoding","zlib");
+
+let compressedBody =  await asyncCompressBody(jsonContent);
+
   for (const url of AllURLprices) {
     console.log(url)
     await new Promise(resolve => setTimeout(resolve, 20));

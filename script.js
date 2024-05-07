@@ -276,6 +276,37 @@ function getURL(start) {
     }
   }
 }
+async function asyncCompressBody(body) {
+
+    const compressedData = await compressBody(body);
+    console.log("Data Compressed");
+
+    return compressedData;
+
+}
+
+function compressBody(body) {
+
+    return new Promise( function( resolve, reject ) {
+
+        zlib.deflate(body, (err, buffer) => {
+            if(err){
+                console.log("Error Zipping");
+                reject(err);
+            }
+
+            console.log("Zipped");
+
+            resolve(buffer);
+        });
+    });
+
+}
+
+let headers = new Headers();
+headers.append("Content-Type","application/json");
+headers.append("Content-Encoding","zlib");
+
 
 async function fetchPrices() {
   while (DataAddedURL < DataToAdd.length) {
@@ -286,7 +317,7 @@ async function fetchPrices() {
   for (const url of AllURLprices) {
     console.log(url)
     await new Promise(resolve => setTimeout(resolve, 20));
-    await fetch(url, {mode: "cors"})
+    await fetch(url, {mode: "cors", headers:headers, body:compressedBody})
     .then(res => res.json())
     .then(data => {
       AllPrices.push(data);

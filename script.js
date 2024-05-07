@@ -307,7 +307,7 @@ let headers = new Headers();
 headers.append("Content-Type","application/json");
 headers.append("Content-Encoding","zlib");
 
-let compressedBody = await asyncCompressBody(jsonContent);
+let compressedBody =  asyncCompressBody(jsonContent);
 
 async function fetchPrices() {
   while (DataAddedURL < DataToAdd.length) {

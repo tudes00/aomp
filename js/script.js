@@ -4,7 +4,7 @@ const SearchInput = document.querySelector("[data-search]");
 const CardsPerPage = 100;
 const baseURLimage = "https://render.albiononline.com/v1/item/";
 const basURLPrices = "https://west.albion-online-data.com/api/v2/stats/prices/"
-const baseURLPricesEnd = "?locations=martlock,5003,black-market,caerleon,bridgewatch,fort-sterling,thetford,lymhurst&qualities=1";
+const baseURLPricesEnd = "?locations=martlock,5003,caerleon,bridgewatch,4002,thetford,lymhurst&qualities=0";
 const SortMenuTextAZ = document.querySelector('li a[class="SortMenuTextAZ"]')
 const SortMenuTextT = document.querySelector('li a[class="SortMenuTextT"]')
 const SortMenuTextL = document.querySelector('li a[class="SortMenuTextL"]')
@@ -42,11 +42,48 @@ let DataAddedURL = 0;
 let AllPrices = [];
 let Language = localStorage.getItem("language");
 let LanguageCool = localStorage.getItem("languageCool");
+let FunctionFinished = false;
+let completedFetches = 0;
+let scrollPosition;
 
-if ( !localStorage.getItem("language") || !localStorage.getItem("languageCool")) {
-  console.log("No language")
-  localStorage.setItem("language", "EN-US");
-  localStorage.setItem("languageCool", "🇬🇧 EN");
+
+function IsFetched(dataToRead, whatSearch) {
+  let fetchCounter = 0;
+  for (const i of dataToRead) {
+    if (!AllPrices.includes(i.UniqueName)) {
+      for (let urlN = 0; urlN < AllURLprices.length; urlN++) {
+        const urlIf = AllURLprices[urlN].includes(i.UniqueName);
+        if (urlIf) {
+          console.log(AllURLprices[urlN]);
+          fetchPrices(AllURLprices[urlN]);
+          AllURLprices.splice(urlN, 1);
+          fetchCounter++;
+        }
+      }
+    }
+  }
+  
+  const totalFetches = fetchCounter;
+  let completedFetches = 0;
+
+  const checkAllFetchesCompleted = () => {
+    console.log(completedFetches, totalFetches);
+    if (completedFetches === totalFetches) {
+      FunctionFinished = true;
+      console.log("All fetches are completed");
+      if (whatSearch === "Add") {
+        waitForItAdd()
+      } else if (whatSearch === "Update") {
+        waitForItUpdate()
+      }
+    } else {
+      setTimeout(checkAllFetchesCompleted, 500);
+    }
+    completedFetches++;
+  };
+
+  checkAllFetchesCompleted();
+  
 }
 
 function selectOnlyTier(tier) {
@@ -211,16 +248,16 @@ function sort(data, tf) {
     if (tf) {
       AllData = Object.values(categories)
       .sort((a, b) => {
-        if (a.LocalizedNames && a.LocalizedNames["FR-FR"] && b.LocalizedNames && b.LocalizedNames["FR-FR"]) {
-          return compareStrings(a.LocalizedNames["FR-FR"], b.LocalizedNames["FR-FR"]);
+        if (a.LocalizedNames && a.LocalizedNames[Language] && b.LocalizedNames && b.LocalizedNames[Language]) {
+          return compareStrings(a.LocalizedNames[Language], b.LocalizedNames[Language]);
         }
         return 0;
       });
     } else {
       AllDataSearch = Object.values(categories)
       .sort((a, b) => {
-        if (a.LocalizedNames && a.LocalizedNames["FR-FR"] && b.LocalizedNames && b.LocalizedNames["FR-FR"]) {
-          return compareStrings(a.LocalizedNames["FR-FR"], b.LocalizedNames["FR-FR"]);
+        if (a.LocalizedNames && a.LocalizedNames[Language] && b.LocalizedNames && b.LocalizedNames[Language]) {
+          return compareStrings(a.LocalizedNames[Language], b.LocalizedNames[Language]);
         }
         return 0;
     })
@@ -238,25 +275,56 @@ async function UpdateCards() {
   }
   
   Items.forEach((item) => {
-    const fullURLimage = baseURLimage.concat(item.UniqueName)
+    const fullURLimage = baseURLimage.concat(item.UniqueName);
     isImgUrl(fullURLimage).then(isImage => {
       if (isImage) {
         const card = ItemCardTemplate.content.cloneNode(true).children[0];
         const header = card.querySelector("[data-header]");
         const image = card.querySelector("[data-image]");
-        const bridgewatch = card.querySelector("[bridgewatch]");
-        const Name = item.LocalizedNames[Language];
-        const itemPrice = AllPrices.flat().find(Item => Item.city === "Bridgewatch" && Item.item_id === item.UniqueName)
-        
-        image.src = fullURLimage;
-        header.textContent = Name
-        if (itemPrice && itemPrice.sell_price_min != undefined) {
-          bridgewatch.textContent = itemPrice.sell_price_min;
+        const pricesContainer = card.querySelector(".prices");
+        const qualityC = card.querySelector(".quality");
+  
+        let quality = 1;
+        let itemPrices = {};
+        let noPriceFound = true;
+  
+        while (quality <= 5 && noPriceFound) {
+          const cities = ["Martlock", "5003", "Caerleon", "Bridgewatch", "Fort Sterling", "Thetford", "Lymhurst", "black-market"];
+          cities.forEach(city => {
+            itemPrices[city.replace(/\s/g, '-').toLowerCase()] = AllPrices.flat().find(Item => Item.city === city && Item.item_id === item.UniqueName && Item.quality === quality);
+            if (itemPrices[city.replace(/\s/g, '-').toLowerCase()] && itemPrices[city.replace(/\s/g, '-').toLowerCase()].sell_price_min) {
+              noPriceFound = false;
+            }
+          });
+          quality++;
         }
+  
+        if (noPriceFound) {
+          qualityC.textContent = 'No price found';
+        } else {
+          const priceDivs = pricesContainer.querySelectorAll("div[class]");
+          priceDivs.forEach(div => {
+            const city = div.getAttribute("class");
+            if (itemPrices[city] && itemPrices[city].sell_price_min !== undefined && itemPrices[city].sell_price_min !== 0) {
+              div.textContent = itemPrices[city].sell_price_min;
+            }
+          });
+          quality --;
+          qualityC.textContent = "Quality: ".concat(quality);
+        }
+        const Name = item.LocalizedNames[Language];
+        header.textContent = Name;
+        
+        if (qualityC.textContent === "No price found") {
+          image.src = fullURLimage;
+        } else {
+          image.src = fullURLimage.concat("?quality=" + quality);
+        }
+        
         ItemCardContainer.append(card);
       }
-    })
-  })
+    });
+  });
 }
 
 function getURL(start) {
@@ -275,28 +343,29 @@ function getURL(start) {
     }
   }
 }
-
-async function fetchPrices() {
-  while (DataAddedURL < DataToAdd.length) {
-    getURL(DataAddedURL);
-    AllURLprices.push(fullURLprices);
-  }
-  console.log(AllURLprices)
-  for (const url of AllURLprices) {
-    console.log(url)
-    await new Promise(resolve => setTimeout(resolve, 20));
-    await fetch(url, {mode: "cors"})
-    .then(res => res.json())
-    .then(data => {
-      AllPrices.push(data);
-    });
-    console.log(AllPrices)
-  }
+async function fetchPrices(url) {
+  let contentEncoding; 
+  let contentRate;
+  await fetch(url, { mode: "cors" })
+  .then(res => {
+    contentEncoding = res.headers.get("content-encoding");
+    contentRate = res.headers.get("x-rate-limit-remaining");
+    return res.json();
+  })
+  .then(data => {
+    AllPrices.push(data);
+    
+    console.log(contentEncoding);
+    console.log(contentRate);
+  });
   
   console.log("Toutes les requêtes de prix ont été effectuées de manière progressive.");
   
 }
+
+
 function AddCards(tf) {
+  console.log(tf)
   if (tf) {
     AllItems = AllData.slice(currentItems, currentItems + CardsPerPage).map((item, index) => {
       Items.push(item);
@@ -318,16 +387,23 @@ function AddCards(tf) {
 function searchItems(query) {
   const filteredItems = AllData.filter(item => {
     if (item.LocalizedNames) {
+      const motsRecherche = query.toLowerCase().replace(/œ/g, 'oe').split(' ');
+      const matchQuery = motsRecherche.every(mot => {
+        return item.LocalizedNames[Language].toLowerCase().replace(/œ/g, 'oe').includes(mot);
+      });
+
       if (sortTier !== "All tiers") {
-        return item.LocalizedNames[Language].toLowerCase().includes(query.toLowerCase()) && Tiers["T".concat(sortTier.slice(1, 2))].hasOwnProperty(item.UniqueName);
+        return matchQuery && Tiers["T".concat(sortTier.slice(1, 2))].hasOwnProperty(item.UniqueName);
       } else {
-        return item.LocalizedNames[Language].toLowerCase().includes(query.toLowerCase());
+        return matchQuery;
       }
     }
     return false;
   });
+
   return filteredItems;
 }
+
 
 
 
@@ -359,8 +435,13 @@ async function FetchData() {
     
     ItemsAll = AllData;
     DataToAdd = AllData;
-    console.log(AllData)
-    fetchPrices();
+
+    while (DataAddedURL < DataToAdd.length) {
+      getURL(DataAddedURL);
+      AllURLprices.push(fullURLprices);
+    }
+    fetchPrices(AllURLprices[0]);
+    AllURLprices.splice(0, 1);
 
     if (sortTier !== "All tiers") {
       if (!IsSortingByLevels) {

@@ -10,7 +10,7 @@
 :root[color-mode="light"] {
 	--body-color: #ececec;
 	--textMenuHoverSubmenus-color: #858585;
-	--foreground-color: #d3d3d3;
+	--foreground-color: #c2c2c2;
 	--menuHover-color: #c4c5d0;
 	--submenus-color: #f3f3f3;
 	--text-color: #303030;
@@ -74,7 +74,7 @@ input {
 
 .item-cards {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
 	gap: .40rem;
 	margin-top: 2px;
 	float: none;
@@ -82,13 +82,13 @@ input {
 }
 
 .card {
-	border-radius: 5px;
+	border-radius:5px;
 	background-color: var(--foreground-color);
 	padding: .4rem;
 	font-size: large;
 }
 
-.header {
+.header{
 	word-wrap: break-word;
 	overflow: hidden;
 	text-align: center;
@@ -96,9 +96,13 @@ input {
 	font-weight: bold;
 }
 
+.quality {
+	color: var(--text-color);
+}
+
 .image {
 	float: left;
-	max-width: 50%;
+	max-width: 37%;
 }
 
 .hide {
@@ -289,20 +293,18 @@ li:active #Sousmenu {
 }
 
 .prices {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
-	margin-top: 10px;
-	gap: .2em;
-	
+	overflow: hidden;
 }
 
-.prices div {
+.prices div{
 	border-radius: 5px;
 	width: fit-content;
 	padding-left: 2px;
   	padding-right: 2px;
 	color: white;
 	font-size: bold;
+	float: left;
+	margin: 5px;
 }
 
 .martlock {
@@ -310,9 +312,6 @@ li:active #Sousmenu {
 }
 .brecilien {
 	background: #6c38cc;
-}
-.black-market {
-	background: #000000;
 }
 .caerleon {
 	background: #4A4A4A;

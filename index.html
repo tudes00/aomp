@@ -6,13 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Albion Online Market Prices</title>
   <link rel="icon" type="image/x-icon" href="./img/logo.png">
-  <link rel="stylesheet" href="main.css">
-  <script src="script.js" defer></script>
-  <script src="./EventListener/EventListener.js" defer></script>
-  <script src="./EventListener/EventListenerAZ.js" defer></script>
-  <script src="./EventListener/EventListenerLevel.js" defer></script>
-  <script src="./EventListener/EventListenerTiers.js" defer></script>
-  <script src="./EventListener/EventListenerLang.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="./js/script.min.js" defer></script>
+  <script src="./js/EventListener.min.js" defer></script>
   <script>
     if ( localStorage.getItem("color-mode") === "light" || (window.matchMedia("(prefers-color-scheme: light)").matches && !localStorage.getItem("color-mode"))) {
       document.documentElement.setAttribute("color-mode", "light");
@@ -72,11 +68,11 @@
             <li><a href="" class="DE">🇩🇪 DE</a></li>
             <li><a href="" class="RU">🇷🇺 RU</a></li>
             <li><a href="" class="PL">🇵🇱 PL</a></li>
+            <li><a href="" class="JA">🇯🇵 JP</a></li>
             <li><a href="" class="ES">🇪🇸 ES</a></li>
             <li><a href="" class="PT">🇵🇹 PT</a></li>
             <li><a href="" class="IT">🇮🇹 IT</a></li>
             <li><a href="" class="KO">🇰🇷 KR</a></li>
-            <li><a href="" class="JA">🇯🇵 JP</a></li>
             <li><a href="" class="ZH">🇨🇳 CN</a></li>
             <li><a href="" class="ID">🇮🇩 ID</a></li>
             <li><a href="" class="TR">🇹🇷 TR</a></li>
@@ -104,13 +100,13 @@
         <div class="prices">
           <div class="martlock" martlock>----</div>
           <div class="brecilien" brecilien>----</div>
-          <div class="black-market" black-market>----</div>
           <div class="caerleon" caerleon>----</div>
           <div class="bridgewatch" bridgewatch>----</div>
-          <div class="fort-sterling">----</div>
-          <div class="thetford" fort-sterling>----</div>
+          <div class="fort-sterling" fort-sterling>----</div>
+          <div class="thetford" thetford>----</div>
           <div class="lymhurst" lymhurst>----</div>
         </div>
+        <div class="quality">quality: 2</div>
       </div>
     </template>
   </div>

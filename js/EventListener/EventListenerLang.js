@@ -2,11 +2,17 @@ function change() {
     SortMenuTextLa.textContent =  LanguageCool.concat(" ▼");
     SousMenuLa.style.display = "none";
     document.getElementById("search").value = '';
-    FetchData()
+    FetchData();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  
+    if ( !localStorage.getItem("language") || !localStorage.getItem("languageCool")) {
+        console.log("No language")
+        localStorage.setItem("language", "EN-US");
+        localStorage.setItem("languageCool", "🇬🇧 EN");
+        Language = "EN-US";
+        LanguageCool = "🇬🇧 EN";
+      }
     //langue:
     SortMenuTextLa.addEventListener('touchstart', function(event) {
       SortMenuTextLa.textContent = LanguageCool.concat(" ▲")

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   
-    //pour l'instant trie de A to Z:
+    //pour l'instant trie de A à Z:
     SortMenuTextAZ.addEventListener('touchstart', function(event) {
       SortMenuTextAZ.textContent = sortAZ.concat(" ▲")
       SousMenuAZ.style.display = "block";

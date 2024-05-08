@@ -62,6 +62,27 @@ document.querySelectorAll('.SortMenu a').forEach(item => {
   });
 });
 
+function waitForItAdd(){
+  console.log(scrollPosition)
+  if (FunctionFinished) {
+    setTimeout(() => {
+      window.scrollTo(0, scrollPosition);
+    });
+    if (wasWriting) {
+      AddCards(false)
+    } else {
+      AddCards(true)
+    }
+    
+  } else {setTimeout(waitForItAdd, 1000)}
+}
+
+function waitForItUpdate(){
+  console.log("bruh")
+  if (FunctionFinished) {
+    UpdateCards()
+  } else {setTimeout(waitForItUpdate, 1000)}
+}
 
 SearchInput.addEventListener("input", (e) => {
   clearTimeout(timeoutId);
@@ -71,7 +92,7 @@ SearchInput.addEventListener("input", (e) => {
     const value = e.target.value.toLowerCase();
     SearchValue = value;
     Items = [];
-    if (value) {
+    if (value && value.length > 2) {
       AllDataSearch = searchItems(value);
       console.log(AllDataSearch.length, currentItemsSearch)
       if (AllDataSearch.length == 0) {
@@ -84,10 +105,11 @@ SearchInput.addEventListener("input", (e) => {
         Items = searchItems(value)
         document.querySelector(".btn-afficher-plus").style.display = "none";
         sort(AllDataSearch, false)
-        UpdateCards()
+
+        IsFetched(AllDataSearch, "Update")
       } else {
         console.log("ah");
-        AddCards(false)
+        IsFetched(AllDataSearch, "Add")
         
         document.querySelector(".btn-afficher-plus").style.display = "block";
       }
@@ -102,32 +124,27 @@ SearchInput.addEventListener("input", (e) => {
       AllDataSearch = "nothing";
       wasWriting = false;
     }
-  }, 700);
+  }, 1000);
   
 });
 
 
 document.querySelector(".btn-afficher-plus").addEventListener("click", (e) => {
   e.preventDefault();
-
-  let scrollPosition = window.pageYOffset;
+  
+  scrollPosition = window.pageYOffset;
 
   if (wasWriting == false) {
-    AddCards(true)
+    IsFetched(Items, "Add")
     if (AllData.length <= currentItems) {
       document.querySelector(".btn-afficher-plus").style.display = "none";
     }
   } else {
-    AddCards(false)
+    IsFetched(AllDataSearch, "Add")
     if (AllDataSearch.length <= currentItemsSearch) {
       document.querySelector(".btn-afficher-plus").style.display = "none";
     }
   }
-
-  // Ajuster la position de défilement après un court délai
-  setTimeout(() => {
-    window.scrollTo(0, scrollPosition);
-  }, 100); // 100ms de délai (ajustez si nécessaire)
 });
 
 

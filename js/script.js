@@ -3,6 +3,7 @@ const ItemCardContainer = document.querySelector("[data-item-cards-container]");
 const SearchInput = document.querySelector("[data-search]");
 const CardsPerPage = 100;
 const baseURLimage = "https://render.albiononline.com/v1/item/";
+const baseURLimagefake = "https://www.apyart.com/1904-large_default/rouge-pop-500ml.jpg";
 const basURLPrices = "https://west.albion-online-data.com/api/v2/stats/prices/"
 const baseURLPricesEnd = "?locations=martlock,5003,caerleon,bridgewatch,4002,thetford,lymhurst&qualities=0";
 const SortMenuTextAZ = document.querySelector('li a[class="SortMenuTextAZ"]')

@@ -2,6 +2,7 @@ function change() {
     SortMenuTextLa.textContent =  LanguageCool.concat(" ▼");
     SousMenuLa.style.display = "none";
     document.getElementById("search").value = '';
+    del();
     FetchData();
 }
 
@@ -45,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('li a[class="FR"]').addEventListener('click', function(event) {
         Language = "FR-FR";
         LanguageCool = "🇫🇷 FR";
-        
         change();
     });
     document.querySelector('li a[class="EN"]').addEventListener('click', function(event) {

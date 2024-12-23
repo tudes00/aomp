@@ -1,19 +1,18 @@
 function handleSearchResults() {
   Items = [];
+  del();
 
   if (wasWriting) {
     currentItemsSearch = 0;
-    AddCards(false);
+    AddCards(false, true);
   } else {
     currentItems = 0;
-    AddCards(true);
+    AddCards(true, true);
   }
   if (AllData.length == 0 || AllDataSearch.length == 0 ) {
-    console.log(AllData.length, AllDataSearch.length)
     NoResults.style.display = "block";
   } else {
     NoResults.style.display = "none";
-    console.log(AllData.length, AllDataSearch.length)
   }
 }
 
@@ -56,31 +55,22 @@ document.querySelectorAll('.SortMenu a').forEach(item => {
   });
 });
 
-document.querySelectorAll('.SortMenu a').forEach(item => {
-  item.addEventListener('click', function(e) {
-    e.preventDefault();
-  });
-});
 
-function waitForItAdd(){
-  console.log(scrollPosition)
+async function waitForItAdd(){
   if (FunctionFinished) {
-    setTimeout(() => {
-      window.scrollTo(0, scrollPosition);
-    });
-    if (wasWriting) {
-      AddCards(false)
-    } else {
-      AddCards(true)
-    }
     
+    if (wasWriting) {
+      AddCards(false, false);
+    } else {
+      AddCards(true, false);
+    }
   } else {setTimeout(waitForItAdd, 1000)}
 }
 
 function waitForItUpdate(){
   console.log("bruh")
   if (FunctionFinished) {
-    UpdateCards()
+    UpdateCards(true)
   } else {setTimeout(waitForItUpdate, 1000)}
 }
 
@@ -100,17 +90,16 @@ SearchInput.addEventListener("input", (e) => {
       } else {
         NoResults.style.display = "none";
       }
-      if (AllDataSearch.length <= currentItemsSearch) {
-        console.log("aaaaa")
+      if (AllDataSearch.length <= currentItemsSearch || AllDataSearch.length <= CardsPerPage) {
         Items = searchItems(value)
         document.querySelector(".btn-afficher-plus").style.display = "none";
         sort(AllDataSearch, false)
-
+        del()
         IsFetched(AllDataSearch, "Update")
       } else {
         console.log("ah");
+        del()
         IsFetched(AllDataSearch, "Add")
-        
         document.querySelector(".btn-afficher-plus").style.display = "block";
       }
   
@@ -118,7 +107,7 @@ SearchInput.addEventListener("input", (e) => {
       Items = [];
       currentItems = 0;
       currentItemsSearch = 0;
-      AddCards(true)
+      AddCards(true, false);
       NoResults.style.display = "none";
       document.querySelector(".btn-afficher-plus").style.display = "block"
       AllDataSearch = "nothing";
@@ -128,19 +117,14 @@ SearchInput.addEventListener("input", (e) => {
   
 });
 
-
 document.querySelector(".btn-afficher-plus").addEventListener("click", (e) => {
-  e.preventDefault();
-  
-  scrollPosition = window.pageYOffset;
 
+  IsFetched(NextItems, "Add")
   if (wasWriting == false) {
-    IsFetched(Items, "Add")
     if (AllData.length <= currentItems) {
       document.querySelector(".btn-afficher-plus").style.display = "none";
     }
   } else {
-    IsFetched(AllDataSearch, "Add")
     if (AllDataSearch.length <= currentItemsSearch) {
       document.querySelector(".btn-afficher-plus").style.display = "none";
     }

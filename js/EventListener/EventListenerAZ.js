@@ -32,12 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
       sortAZ = "A to Z"
       SortMenuTextAZ.textContent = sortAZ.concat(" ▼")
       SousMenuAZ.style.display = "none";
+      del()
       if (wasWriting) {
         Items = []; 
         currentItemsSearch = 0;
-        AddCards(false);
+        AddCards(false, true);
       } else{
-        FetchData()
+        initialization()
       }
   
     });
@@ -45,12 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
       sortAZ = "Z to A"
       SortMenuTextAZ.textContent =  sortAZ.concat(" ▼")
       SousMenuAZ.style.display = "none";
+      del()
       if (wasWriting) {
         Items = []; 
         currentItemsSearch = 0;
-        AddCards(false)
+        AddCards(false, true);
       } else{
-        FetchData()
+        initialization()
       }
   
     });

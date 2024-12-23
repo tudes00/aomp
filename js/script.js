@@ -45,8 +45,13 @@ let Language = localStorage.getItem("language");
 let LanguageCool = localStorage.getItem("languageCool");
 let FunctionFinished = false;
 let completedFetches = 0;
-let scrollPosition;
+let NextItems = [];
 
+function del() {
+  while (ItemCardContainer.firstChild) {
+    ItemCardContainer.removeChild(ItemCardContainer.firstChild);
+  }
+}
 
 function IsFetched(dataToRead, whatSearch) {
   let fetchCounter = 0;
@@ -55,7 +60,6 @@ function IsFetched(dataToRead, whatSearch) {
       for (let urlN = 0; urlN < AllURLprices.length; urlN++) {
         const urlIf = AllURLprices[urlN].includes(i.UniqueName);
         if (urlIf) {
-          console.log(AllURLprices[urlN]);
           fetchPrices(AllURLprices[urlN]);
           AllURLprices.splice(urlN, 1);
           fetchCounter++;
@@ -68,10 +72,8 @@ function IsFetched(dataToRead, whatSearch) {
   let completedFetches = 0;
 
   const checkAllFetchesCompleted = () => {
-    console.log(completedFetches, totalFetches);
     if (completedFetches === totalFetches) {
       FunctionFinished = true;
-      console.log("All fetches are completed");
       if (whatSearch === "Add") {
         waitForItAdd()
       } else if (whatSearch === "Update") {
@@ -88,7 +90,6 @@ function IsFetched(dataToRead, whatSearch) {
 }
 
 function selectOnlyTier(tier) {
-  console.log("tier: ", tier)
   AllDataTier = [];
   if (tier !== 9) {
     IsSortingByTiers = true;
@@ -111,11 +112,9 @@ function selectOnlyTier(tier) {
 }
 
 function selectOnlyLevel(level) {
-  console.log("level: ", level)
   AllDataLevel = [];
   if (level !== 5 & level !== 0) {
     
-    console.log("1level: ", level)
     IsSortingByLevels = true;
     ItemsAll.forEach((item) => {
       if (item.UniqueName.includes("@".concat(level))) {
@@ -124,11 +123,9 @@ function selectOnlyLevel(level) {
     });
   } else if (level == 5){
     
-    console.log("2level: ", level)
     IsSortingByLevels = false;
     AllDataLevel = ItemsAll;
   } else {
-    console.log("3level: ", level)
     IsSortingByLevels = true;
     ItemsAll.forEach((item) => {
       if (!item.UniqueName.includes("@")) {
@@ -137,7 +134,6 @@ function selectOnlyLevel(level) {
     });
   }
 
-  console.log(AllDataLevel);
   if (AllDataLevel.length <= currentItems) {
     document.querySelector(".btn-afficher-plus").style.display = "none";
   } else {
@@ -147,7 +143,6 @@ function selectOnlyLevel(level) {
 }
 
 function selectOnlyTierLevel(tier, level) {
-  console.log(tier, level);
   
   AllDataTierLevel = [];
   if (level === null) {
@@ -166,12 +161,8 @@ function selectOnlyTierLevel(tier, level) {
   }else {
     tier = "T".concat(tier)
   }
-  console.log("Level est différent de 5 ? ", level != 5);
-  console.log("Level est différent de 0 ? ", level != 0);
-  console.log("Tier est différent de 'T9' ? ", tier != "T9");
 
   if (level != 5 && level != 0 && tier != "T9") {
-    console.log("La condition est vraie : ", tier, level);
     IsSortingByLevels = true;
     IsSortingByTiers = true;
     AllDataTierLevel = [];
@@ -182,11 +173,9 @@ function selectOnlyTierLevel(tier, level) {
     });
   } else if (level == 5){
     IsSortingByLevels = false;
-    console.log('2')
     AllDataTierLevel = selectOnlyTier(tier.slice(1, 2));
   } else if (level == 0 & tier != "T9"){
     IsSortingByLevels = true;
-    console.log('0, 9 aaaaaaaa')
     ItemsAll.forEach((item) => {
       if (!item.UniqueName.includes("@") & Tiers[tier].hasOwnProperty(item.UniqueName)) {
         AllDataTierLevel.push(item);
@@ -194,7 +183,6 @@ function selectOnlyTierLevel(tier, level) {
     });
   } else if (level == 0 & tier == 9){
     IsSortingByLevels = true;
-    console.log('3')
     ItemsAll.forEach((item) => {
       if (!item.UniqueName.includes("@")) {
         AllDataTierLevel.push(item);
@@ -202,7 +190,6 @@ function selectOnlyTierLevel(tier, level) {
     });
   } else if (tier == "T9") {
     IsSortingByTiers = false;
-    console.log('4')
     AllDataTierLevel = selectOnlyLevel(level);
   }
 
@@ -265,17 +252,17 @@ function sort(data, tf) {
   }
 }
 
-async function UpdateCards() {
+async function UpdateCards(tf) {
   while (AllPrices.length == 0) {
-    console.log("aaa")
     await new Promise(resolve => setTimeout(resolve, 1000))
   }
-  console.log("hello")
-  while (ItemCardContainer.firstChild) {
-    ItemCardContainer.removeChild(ItemCardContainer.firstChild);
+  let itemToUpdate;
+  if (tf) {
+    itemToUpdate = Items;
+  } else {
+    itemToUpdate = NextItems;
   }
-  
-  Items.forEach((item) => {
+  itemToUpdate.forEach((item) => {
     const fullURLimage = baseURLimage.concat(item.UniqueName);
     isImgUrl(fullURLimage).then(isImage => {
       if (isImage) {
@@ -356,33 +343,35 @@ async function fetchPrices(url) {
   .then(data => {
     AllPrices.push(data);
     
-    console.log(contentEncoding);
-    console.log(contentRate);
   });
   
-  console.log("Toutes les requêtes de prix ont été effectuées de manière progressive.");
   
 }
 
 
-function AddCards(tf) {
-  console.log(tf)
+function AddCards(tf, start) {
+  NextItems = [];
   if (tf) {
     AllItems = AllData.slice(currentItems, currentItems + CardsPerPage).map((item, index) => {
       Items.push(item);
     })
+    AllItems = AllData.slice(currentItems + CardsPerPage, currentItems + CardsPerPage*2).map((item, index) => {
+      NextItems.push(item);
+    })
+
     currentItems = Items.length;
   } else {
     AllDataSearch = searchItems(SearchValue);
     sort(AllDataSearch, false)
-    console.log(currentItemsSearch, currentItemsSearch + CardsPerPage)
-    currentItemsSearch = Items.length
     AllItems = AllDataSearch.slice(currentItemsSearch, currentItemsSearch + CardsPerPage).map((item, index) => {
       Items.push(item);
     })
+    AllItems = AllDataSearch.slice(currentItemsSearch+ CardsPerPage, currentItemsSearch + CardsPerPage*2).map((item, index) => {
+      NextItems.push(item);
+    })
     currentItemsSearch = Items.length;
   }
-  UpdateCards();
+  UpdateCards(start);
 }
 
 function searchItems(query) {
@@ -410,21 +399,49 @@ function searchItems(query) {
 
 
 async function GetTiers() {
-  await fetch("https://aomp.vercel.app/TiersData.json")
+  await fetch("https://aomp.vercel.app/json/TiersData.json")
   .then((res) => res.json())
   .then((data) => {Tiers = data})
 }
 
 
-
-
-async function FetchData() {
-  AllData = [];
+function initialization() {
   AllDataSearch = "nothing";
-  Items = []; 
+  Items = [];
+  AllURLprices = [];
   currentItems = 0;
   currentItemsSearch = 0;
-  await fetch("https://aomp.vercel.app/item.json")
+  DataAddedURL = 0;
+  sort(AllData, true)
+    
+  ItemsAll = AllData;
+  DataToAdd = AllData;
+  while (DataAddedURL < DataToAdd.length) {
+    getURL(DataAddedURL);
+    AllURLprices.push(fullURLprices);
+  }
+  fetchPrices(AllURLprices[0])
+  AllURLprices.splice(0, 1);
+  if (sortTier !== "All tiers") {
+    if (!IsSortingByLevels) {
+      AllData = selectOnlyTier(sortTier.slice(1, 2));
+    }else {
+      AllData = selectOnlyTierLevel(sortTier.slice(1, 2), null);
+    }
+  }
+
+  if (sortLevel !== "All levels") {
+    if (!IsSortingByTiers) {
+      AllData = selectOnlyLevel(sortLevel);
+    }else {
+      AllData = selectOnlyTierLevel(null, sortLevel);
+    }
+  }
+  AddCards(true, true);
+}
+
+async function FetchData() {
+  await fetch("https://aomp.vercel.app/json/item.json")
   .then((res) => res.json())
   .then((data) => {
     AllItems = data.slice(0, data.length).map((item, index) => {
@@ -432,39 +449,18 @@ async function FetchData() {
         AllData.push(item);
       }
     })
-    sort(AllData, true)
-    
-    ItemsAll = AllData;
-    DataToAdd = AllData;
-
-    while (DataAddedURL < DataToAdd.length) {
-      getURL(DataAddedURL);
-      AllURLprices.push(fullURLprices);
-    }
-    fetchPrices(AllURLprices[0]);
-    AllURLprices.splice(0, 1);
-
-    if (sortTier !== "All tiers") {
-      if (!IsSortingByLevels) {
-        AllData = selectOnlyTier(sortTier.slice(1, 2));
-      }else {
-        AllData = selectOnlyTierLevel(sortTier.slice(1, 2), null);
-      }
-    }
-
-    if (sortLevel !== "All levels") {
-      if (!IsSortingByTiers) {
-        console.log("selectonlylevel")
-        AllData = selectOnlyLevel(sortLevel);
-      }else {
-        AllData = selectOnlyTierLevel(null, sortLevel);
-      }
-    }
-    AddCards(true);
   })
+  initialization();
 }
 
+function reset() {
+  
+}
+
+
 GetTiers();
+AllData = [];
 FetchData();
+
 
 NoResults.style.display = "none";

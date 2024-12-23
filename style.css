@@ -67,8 +67,8 @@ input {
 	padding: 17.9px 8.95px;
 	line-height: 0;
 	height: 0px;
-	position: fixed;
-    right: 10px;
+	position: static;
+   right: 10px;
 }
 
 

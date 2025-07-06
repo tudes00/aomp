@@ -1,3 +1,0 @@
-dans le terminal:
-    vercel deploy //pour mettre en mettre en ligne le site web avec le code utiliser
-    vercel --prod //pour mettre a jour le site web avec la nouv version du code
